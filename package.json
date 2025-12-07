@@ -9,6 +9,8 @@
     "dev:full": "concurrently --names \"API,WEB\" --prefix-colors \"cyan,green\" \"npm run server\" \"npm run dev\"",
     "monitor": "node monitor.js",
     "test:email": "node test-email.js",
+    "test:responsive": "node test-responsive.js",
+    "test:visual": "node test-visual.js",
     "health": "curl -s http://localhost:3001/api/health || echo 'Servidor offline'",
     "db:health": "node db-health.js"
   },
@@ -30,6 +32,7 @@
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
-    "live-server": "^1.2.2"
+    "live-server": "^1.2.2",
+    "puppeteer": "^21.11.0"
   }
 }

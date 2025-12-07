@@ -20,3 +20,11 @@ Thumbs.db
 
 # Uploads temp
 uploads/
+
+# Test artifacts
+screenshots/
+
+# Firebase credentials (sensitive)
+*.json.key
+firebase-adminsdk*.json
+serviceAccountKey*.json

@@ -653,6 +653,9 @@
             box-shadow: 
                 0 20px 60px rgba(0, 0, 0, 0.4),
                 inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .partnership-container::before {
@@ -1170,17 +1173,17 @@
         /* Responsividade */
         @media (max-width: 768px) {
             .container {
-                padding: 50px 20px 80px;
+                padding: 40px 16px 70px;
             }
 
             .hero {
-                padding: 40px 0;
-                margin-bottom: 60px;
+                padding: 30px 0;
+                margin-bottom: 50px;
             }
 
             .hero::before {
-                width: 300px;
-                height: 300px;
+                width: 280px;
+                height: 280px;
             }
 
             .logo {
@@ -1191,6 +1194,7 @@
             .tagline {
                 font-size: 1.2rem;
                 margin-top: 24px;
+                padding: 0 10px;
             }
 
             .tagline-sub {
@@ -1202,31 +1206,64 @@
                 display: none;
             }
 
+            .content-section {
+                margin-bottom: 40px;
+            }
+
             .section-title {
                 font-size: 1.7rem;
                 margin-bottom: 24px;
+                padding: 0 10px;
+            }
+
+            .intro-text {
+                font-size: 1.05rem;
+                padding: 0 10px;
+            }
+
+            .intro-text.highlight {
+                font-size: 1.1rem;
             }
 
             .text-block {
-                padding: 36px 24px;
+                padding: 32px 20px;
                 border-radius: 20px;
             }
 
             .text-block p {
-                font-size: 1.05rem;
+                font-size: 1rem;
+                line-height: 1.85;
+            }
+
+            .benefit-card {
+                padding: 28px 20px;
+            }
+
+            .benefit-card h3 {
+                font-size: 1.15rem;
+            }
+
+            .benefit-card p {
+                font-size: 0.95rem;
             }
 
             .cta-section {
-                padding: 40px 24px;
-                margin: 60px 0;
+                padding: 36px 20px;
+                margin: 50px 0;
+                border-radius: 24px;
+            }
+
+            .cta-section p {
+                font-size: 1.05rem;
             }
 
             .partnership-container {
-                padding: 40px 24px;
+                padding: 36px 20px;
+                border-radius: 24px;
             }
 
             .partnership-intro {
-                font-size: 1.15rem;
+                font-size: 1.1rem;
             }
 
             .partnership-highlight {
@@ -1257,12 +1294,19 @@
             }
 
             .form-title {
-                font-size: 1.8rem;
+                font-size: 2.2rem;
             }
 
             .form-subtitle {
                 font-size: 0.95rem;
                 margin-bottom: 40px;
+            }
+
+            /* Prevenir zoom automático no iOS */
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                font-size: 16px;
             }
 
             .benefit-card {
@@ -1296,6 +1340,10 @@
         }
 
         @media (max-width: 480px) {
+            .container {
+                padding: 32px 12px 60px;
+            }
+
             .logo {
                 font-size: 2.4rem;
             }
@@ -1305,21 +1353,217 @@
             }
 
             .text-block {
-                padding: 28px 20px;
+                padding: 28px 16px;
             }
 
             .form-section {
-                padding: 32px 16px;
+                padding: 32px 14px;
             }
 
             .form-group input,
             .form-group select,
             .form-group textarea {
-                padding: 16px 18px;
+                padding: 16px 14px;
+                font-size: 16px; /* Previne zoom automático no iOS */
             }
 
             .checkbox-group {
                 padding: 20px 16px;
+            }
+
+            .form-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .benefit-card {
+                padding: 24px;
+            }
+
+            .benefit-title {
+                font-size: 1.1rem;
+            }
+
+            .benefit-description {
+                font-size: 0.9rem;
+            }
+
+            .partnership-container {
+                padding: 28px 16px;
+            }
+
+            .partnership-intro {
+                font-size: 1.1rem;
+            }
+
+            .partnership-highlight {
+                padding: 20px 16px;
+            }
+
+            .partnership-highlight p {
+                font-size: 1.05rem;
+            }
+
+            .partnership-closing {
+                font-size: 0.95rem;
+            }
+
+            .final-section p {
+                font-size: 1rem;
+            }
+
+            .final-section .signature {
+                font-size: 1.4rem;
+            }
+
+            /* Blobs menores em mobile */
+            .blob-1 {
+                width: 250px;
+                height: 250px;
+            }
+
+            .blob-2 {
+                width: 200px;
+                height: 200px;
+            }
+
+            .blob-3 {
+                width: 180px;
+                height: 180px;
+            }
+
+            .blob-4 {
+                width: 160px;
+                height: 160px;
+            }
+        }
+
+        /* Breakpoint para telas muito pequenas (360px e menores) */
+        @media (max-width: 360px) {
+            .container {
+                padding: 30px 8px 50px;
+            }
+
+            .logo {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 0.95rem;
+            }
+
+            .tagline-sub {
+                font-size: 0.75rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+
+            .text-block {
+                padding: 20px 14px;
+            }
+
+            .text-block p {
+                font-size: 0.95rem;
+            }
+
+            .form-section {
+                padding: 24px 12px;
+                border-radius: 20px;
+            }
+
+            .form-title {
+                font-size: 1.7rem;
+            }
+
+            .form-subtitle {
+                font-size: 0.85rem;
+            }
+
+            .form-group label {
+                font-size: 0.85rem;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 14px 14px;
+                font-size: 16px;
+                border-radius: 12px;
+            }
+
+            .submit-btn {
+                min-width: 100%;
+                padding: 0 20px;
+                font-size: 1rem;
+            }
+
+            .benefit-card {
+                padding: 20px;
+            }
+
+            .benefit-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 1.3rem;
+            }
+
+            .benefit-title {
+                font-size: 1rem;
+            }
+
+            .partnership-container {
+                padding: 20px 12px;
+            }
+
+            .partnership-intro {
+                font-size: 1rem;
+            }
+
+            .partnership-highlight p {
+                font-size: 0.95rem;
+            }
+
+            .final-section {
+                padding: 40px 12px;
+            }
+
+            .final-section .signature {
+                font-size: 1.2rem;
+            }
+
+            .footer p {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Touch targets - garantir áreas clicáveis de 44px mínimo */
+        @media (max-width: 768px) {
+            .submit-btn,
+            .social-link,
+            button,
+            .checkbox-group input[type="checkbox"] {
+                min-height: 44px;
+                min-width: 44px;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                min-height: 52px;
+            }
+
+            /* Espaçamento extra para toque */
+            .checkbox-group {
+                gap: 16px;
+            }
+
+            .checkbox-group label {
+                padding: 8px 0;
             }
         }
 

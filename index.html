@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Paraty GO! - O marketplace de experiências turísticas de Paraty. Cadastre seu serviço e faça parte do futuro do turismo.">
+    <meta name="theme-color" content="#0c1929">
+    <meta name="robots" content="index, follow">
+    <title>Paraty GO! | O Futuro do Turismo em Paraty</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --azul-profundo: #0c1929;
+            --azul-escuro: #0a2540;
+            --azul-oceano: #0d3a5c;
+            --azul-marinho: #0f4c75;
+            --azul-agua: #1a6b9a;
+            --onda-tras: #064e78;
+            --onda-meio: #085f8e;
+            --ciano-claro: #67e8f9;
+            --ciano: #22d3ee;
+            --turquesa: #06b6d4;
+            --sky-claro: #0ea5e9;
+            --sky-medio: #0284c7;
+            --sky-escuro: #0369a1;
+            --ciano-agua: #38bdf8;
+            --preto-base: #0a0a0f;
+            --branco: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0f;
+            min-height: 100vh;
+            color: var(--branco);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Blobs animados no background */
+        .bg-blobs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.35;
+            animation: blobFloat 12s ease-in-out infinite;
+        }
+
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--azul-oceano), var(--sky-claro));
+            top: -150px;
+            left: -100px;
+            animation-delay: 0s;
+            animation-duration: 10s;
+        }
+
+        .blob-2 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, var(--turquesa), var(--ciano));
+            top: 25%;
+            right: -100px;
+            animation-delay: -2s;
+            animation-duration: 12s;
+        }
+
+        .blob-3 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--sky-medio), var(--azul-agua));
+            bottom: 10%;
+            left: 5%;
+            animation-delay: -4s;
+            animation-duration: 11s;
+        }
+
+        .blob-4 {
+            width: 280px;
+            height: 280px;
+            background: linear-gradient(135deg, var(--ciano-agua), var(--turquesa));
+            top: 50%;
+            left: 40%;
+            animation-delay: -3s;
+            animation-duration: 13s;
+        }
+
+        @keyframes blobFloat {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            20% {
+                transform: translate(50px, -40px) scale(1.08);
+            }
+            40% {
+                transform: translate(-30px, 50px) scale(0.95);
+            }
+            60% {
+                transform: translate(40px, 30px) scale(1.1);
+            }
+            80% {
+                transform: translate(-50px, -30px) scale(0.98);
+            }
+        }
+
+        /* ===== LOADING SCREEN ===== */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--azul-profundo) 0%, var(--azul-escuro) 50%, var(--azul-oceano) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--branco) 0%, var(--ciano-claro) 50%, var(--ciano) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 40px;
+            letter-spacing: -2px;
+            animation: pulse-logo 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-logo {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+        }
+
+        .loading-spinner {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+
+        .loading-spinner::before,
+        .loading-spinner::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .loading-spinner::before {
+            width: 100%;
+            height: 100%;
+            border: 3px solid rgba(103, 232, 249, 0.1);
+        }
+
+        .loading-spinner::after {
+            width: 100%;
+            height: 100%;
+            border: 3px solid transparent;
+            border-top-color: var(--ciano);
+            border-right-color: var(--ciano-claro);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-dots {
+            display: flex;
+            gap: 8px;
+            margin-top: 32px;
+        }
+
+        .loading-dots span {
+            width: 10px;
+            height: 10px;
+            background: var(--ciano);
+            border-radius: 50%;
+            animation: bounce-dot 1.4s ease-in-out infinite;
+        }
+
+        .loading-dots span:nth-child(1) { animation-delay: 0s; }
+        .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes bounce-dot {
+            0%, 80%, 100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        .loading-text {
+            margin-top: 24px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        /* Esconder conteúdo principal até carregar */
+        .page-content {
+            opacity: 0;
+            transition: opacity 0.8s ease 0.2s;
+        }
+
+        .page-content.loaded {
+            opacity: 1;
+        }
+
+        /* ===== FIM LOADING SCREEN ===== */
+
+        /* Grid removido - fundo limpo */
+
+        /* Gradiente de topo para suavizar */
+        .top-fade {
+            display: none;
+        }
+
+        /* Container principal */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 40px 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 60px 20px;
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            animation: hero-pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes hero-pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes float-text {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(4rem, 12vw, 7rem);
+            font-weight: 800;
+            background: linear-gradient(
+                135deg, 
+                var(--branco) 0%, 
+                var(--ciano-claro) 25%, 
+                var(--ciano) 50%, 
+                var(--ciano-claro) 75%, 
+                var(--branco) 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            letter-spacing: -3px;
+            animation: shimmer 4s linear infinite, fadeInUp 1s ease-out;
+            position: relative;
+            display: inline-block;
+            max-width: 100%;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--ciano), var(--turquesa), var(--ciano), transparent);
+            border-radius: 2px;
+        }
+
+        .tagline {
+            font-size: clamp(1.1rem, 4vw, 1.6rem);
+            font-weight: 400;
+            color: var(--branco);
+            margin-bottom: 20px;
+            margin-top: 30px;
+            letter-spacing: 0.5px;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out 0.3s both;
+            max-width: 100%;
+            padding: 0 10px;
+        }
+
+        .tagline-sub {
+            font-size: clamp(0.85rem, 3vw, 1.1rem);
+            font-weight: 300;
+            color: var(--ciano-agua);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease-out 0.5s both;
+            max-width: 100%;
+            padding: 0 10px;
+        }
+
+        .divider {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--ciano), transparent);
+            margin: 40px auto 0;
+            border-radius: 2px;
+            animation: fadeInUp 1s ease-out 0.7s both;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: relative;
+            margin-top: 40px;
+            animation: float-text 2s ease-in-out infinite;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 24px;
+            height: 24px;
+            border-right: 2px solid var(--ciano);
+            border-bottom: 2px solid var(--ciano);
+            transform: rotate(45deg);
+            opacity: 0.6;
+        }
+
+        /* Seções de conteúdo */
+        .content-section {
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .content-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--branco);
+            margin-bottom: 32px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title span {
+            background: linear-gradient(135deg, var(--ciano-claro), var(--ciano), var(--turquesa));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .intro-text {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .intro-text.highlight {
+            color: var(--ciano-claro);
+            font-weight: 500;
+            font-size: 1.3rem;
+        }
+
+        .text-block {
+            background: linear-gradient(145deg, rgba(10, 37, 64, 0.7) 0%, rgba(13, 58, 92, 0.5) 50%, rgba(15, 76, 117, 0.3) 100%);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(103, 232, 249, 0.12);
+            border-radius: 28px;
+            padding: 48px 56px;
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 4px 24px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            width: 100%;
+            max-width: 100%;
+            text-align: center;
+        }
+
+        .text-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(103, 232, 249, 0.3), transparent);
+        }
+
+        .text-block p {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: rgba(255, 255, 255, 0.88);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .text-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        .text-block .emphasis {
+            color: var(--ciano-agua);
+            font-weight: 600;
+        }
+
+        /* Lista de benefícios */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 32px;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .benefit-card {
+            background: linear-gradient(145deg, rgba(6, 78, 120, 0.6) 0%, rgba(8, 95, 142, 0.35) 100%);
+            border: 1px solid rgba(103, 232, 249, 0.15);
+            border-radius: 24px;
+            padding: 36px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.1);
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(34, 211, 238, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            transform: rotate(45deg);
+        }
+
+        .benefit-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--ciano), transparent);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            border-color: var(--ciano);
+            box-shadow: 
+                0 24px 64px rgba(6, 182, 212, 0.25),
+                0 0 0 1px rgba(103, 232, 249, 0.2);
+        }
+
+        .benefit-card:hover::before,
+        .benefit-card:hover::after {
+            opacity: 1;
+        }
+
+        .benefit-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--sky-claro), var(--turquesa));
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 1.8rem;
+            box-shadow: 0 8px 24px rgba(14, 165, 233, 0.3);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .benefit-card:hover .benefit-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 12px 32px rgba(14, 165, 233, 0.4);
+        }
+
+        .benefit-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--branco);
+            margin-bottom: 14px;
+            position: relative;
+        }
+
+        .benefit-card p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.8;
+            position: relative;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            margin: 50px 0;
+            padding: 48px 40px;
+            background: linear-gradient(145deg, rgba(6, 78, 120, 0.5) 0%, rgba(13, 58, 92, 0.35) 100%);
+            border-radius: 32px;
+            border: 1px solid rgba(103, 232, 249, 0.12);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(103, 232, 249, 0.4), transparent);
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .cta-section .emphasis {
+            color: var(--ciano-agua);
+            font-weight: 600;
+        }
+
+        /* Partnership Section - Enhanced */
+        .partnership-section {
+            margin: 60px 0;
+        }
+
+        .partnership-container {
+            text-align: center;
+            padding: 56px 48px;
+            background: linear-gradient(145deg, 
+                rgba(10, 10, 15, 0.95) 0%, 
+                rgba(15, 25, 40, 0.9) 50%,
+                rgba(10, 10, 15, 0.95) 100%);
+            border-radius: 32px;
+            border: 1px solid rgba(103, 232, 249, 0.15);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .partnership-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                #f59e0b 30%, 
+                #06b6d4 70%, 
+                transparent);
+        }
+
+        .partnership-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(103, 232, 249, 0.3), 
+                transparent);
+        }
+
+        .partnership-icon {
+            margin-bottom: 24px;
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        .partnership-icon svg {
+            filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.4));
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .partnership-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .partnership-intro {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 28px;
+            letter-spacing: 0.02em;
+        }
+
+        .partnership-highlight {
+            position: relative;
+            padding: 28px 32px;
+            margin: 32px 0;
+            background: linear-gradient(135deg, 
+                rgba(245, 158, 11, 0.08) 0%, 
+                rgba(6, 182, 212, 0.08) 100%);
+            border-radius: 20px;
+            border-left: 4px solid;
+            border-image: linear-gradient(to bottom, #f59e0b, #06b6d4) 1;
+        }
+
+        .partnership-highlight p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .partnership-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 36px;
+        }
+
+        .decorative-line {
+            flex: 1;
+            max-width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(245, 158, 11, 0.5), 
+                rgba(6, 182, 212, 0.5),
+                transparent);
+            border-radius: 1px;
+        }
+
+        .partnership-closing {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: #fbbf24;
+            margin: 0;
+            white-space: nowrap;
+            text-shadow: 0 0 30px rgba(245, 158, 11, 0.3);
+        }
+
+        /* Formulário */
+        .form-section {
+            background: linear-gradient(180deg, rgba(10, 37, 64, 0.8) 0%, rgba(12, 25, 41, 0.9) 100%);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(103, 232, 249, 0.15);
+            border-radius: 32px;
+            padding: 56px 48px;
+            margin-top: 50px;
+            width: 100%;
+            max-width: 100%;
+            box-shadow: 
+                0 50px 100px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(103, 232, 249, 0.1);
+        }
+
+        .form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--ciano), var(--turquesa), var(--ciano), transparent);
+        }
+
+        .form-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--branco), var(--ciano-claro));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .form-subtitle {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.65);
+            text-align: center;
+            margin-bottom: 56px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--ciano-agua);
+            margin-bottom: 12px;
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .form-group label .required {
+            color: var(--ciano);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 18px 22px;
+            background: rgba(12, 25, 41, 0.7);
+            border: 2px solid rgba(103, 232, 249, 0.12);
+            border-radius: 16px;
+            color: var(--branco);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--ciano);
+            box-shadow: 
+                0 0 0 4px rgba(34, 211, 238, 0.12),
+                0 8px 24px rgba(0, 0, 0, 0.2);
+            background: rgba(12, 25, 41, 0.95);
+            transform: translateY(-2px);
+        }
+
+        .form-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2367e8f9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 18px center;
+            background-size: 20px;
+            padding-right: 54px;
+        }
+
+        .form-group select option {
+            background: var(--azul-profundo);
+            color: var(--branco);
+            padding: 14px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 140px;
+            line-height: 1.6;
+        }
+
+        /* File Upload */
+        .file-upload {
+            position: relative;
+        }
+
+        .file-upload-area {
+            border: 2px dashed rgba(103, 232, 249, 0.25);
+            border-radius: 18px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(12, 25, 41, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .file-upload-area::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(34, 211, 238, 0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .file-upload-area:hover {
+            border-color: var(--ciano);
+            background: rgba(12, 25, 41, 0.7);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .file-upload-area:hover::before {
+            opacity: 1;
+        }
+
+        .file-upload-area input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .upload-text {
+            color: var(--ciano-agua);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .upload-hint {
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 0.85rem;
+            margin-top: 10px;
+        }
+
+        .file-list {
+            margin-top: 16px;
+            font-size: 0.9rem;
+            color: var(--ciano-claro);
+            padding: 12px;
+            background: rgba(34, 211, 238, 0.1);
+            border-radius: 10px;
+        }
+
+        /* Checkbox */
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-top: 16px;
+            padding: 24px;
+            background: rgba(12, 25, 41, 0.5);
+            border-radius: 16px;
+            border: 1px solid rgba(103, 232, 249, 0.1);
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 26px;
+            height: 26px;
+            min-width: 26px;
+            accent-color: var(--ciano);
+            cursor: pointer;
+            margin-top: 2px;
+            border-radius: 6px;
+        }
+
+        .checkbox-group input[type="checkbox"]:focus {
+            outline: 2px solid var(--ciano);
+            outline-offset: 2px;
+        }
+
+        .checkbox-group label {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
+            cursor: pointer;
+            margin-bottom: 0;
+        }
+
+        /* Submit Button */
+        .submit-container {
+            margin-top: 56px;
+            text-align: center;
+        }
+
+        .submit-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            padding: 22px 64px;
+            background: linear-gradient(135deg, var(--sky-claro) 0%, var(--sky-medio) 50%, var(--sky-escuro) 100%);
+            border: none;
+            border-radius: 18px;
+            color: var(--branco);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 12px 40px rgba(14, 165, 233, 0.4),
+                0 4px 12px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 
+                0 20px 56px rgba(14, 165, 233, 0.5),
+                0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .submit-btn:focus {
+            outline: none;
+            box-shadow: 
+                0 0 0 4px rgba(103, 232, 249, 0.4),
+                0 12px 40px rgba(14, 165, 233, 0.4);
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:active {
+            transform: translateY(-2px) scale(1);
+        }
+
+        .submit-btn svg {
+            width: 26px;
+            height: 26px;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .submit-btn:hover svg {
+            transform: translateX(6px);
+        }
+
+        /* Final Section */
+        .final-section {
+            text-align: center;
+            margin-top: 100px;
+            padding: 60px 24px;
+            position: relative;
+        }
+
+        .final-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--ciano), transparent);
+        }
+
+        .final-section p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 2;
+            margin-bottom: 24px;
+        }
+
+        .final-section .signature {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--branco), var(--ciano-claro), var(--ciano));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-top: 40px;
+            animation: shimmer 3s linear infinite;
+        }
+
+        .final-section .emoji {
+            font-size: 2.5rem;
+            margin-top: 24px;
+            display: inline-block;
+            animation: bounce 2s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 48px 24px;
+            margin-top: 60px;
+            border-top: 1px solid rgba(103, 232, 249, 0.2);
+            background: linear-gradient(180deg, transparent 0%, rgba(12, 25, 41, 0.5) 100%);
+        }
+
+        .footer p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.85);
+            letter-spacing: 0.5px;
+            font-weight: 500;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .container {
+                padding: 50px 20px 80px;
+            }
+
+            .hero {
+                padding: 40px 0;
+                margin-bottom: 60px;
+            }
+
+            .hero::before {
+                width: 300px;
+                height: 300px;
+            }
+
+            .logo {
+                font-size: 3rem;
+                letter-spacing: -2px;
+            }
+
+            .tagline {
+                font-size: 1.2rem;
+                margin-top: 24px;
+            }
+
+            .tagline-sub {
+                font-size: 0.9rem;
+                letter-spacing: 1px;
+            }
+
+            .scroll-indicator {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+                margin-bottom: 24px;
+            }
+
+            .text-block {
+                padding: 36px 24px;
+                border-radius: 20px;
+            }
+
+            .text-block p {
+                font-size: 1.05rem;
+            }
+
+            .cta-section {
+                padding: 40px 24px;
+                margin: 60px 0;
+            }
+
+            .partnership-container {
+                padding: 40px 24px;
+            }
+
+            .partnership-intro {
+                font-size: 1.15rem;
+            }
+
+            .partnership-highlight {
+                padding: 20px 18px;
+                margin: 24px 0;
+            }
+
+            .partnership-highlight p {
+                font-size: 1.1rem;
+            }
+
+            .partnership-footer {
+                gap: 12px;
+            }
+
+            .decorative-line {
+                max-width: 40px;
+            }
+
+            .partnership-closing {
+                font-size: 1rem;
+            }
+
+            .form-section {
+                padding: 40px 20px;
+                border-radius: 24px;
+                margin-top: 60px;
+            }
+
+            .form-title {
+                font-size: 1.8rem;
+            }
+
+            .form-subtitle {
+                font-size: 0.95rem;
+                margin-bottom: 40px;
+            }
+
+            .benefit-card {
+                padding: 28px;
+            }
+
+            .benefit-icon {
+                width: 56px;
+                height: 56px;
+                font-size: 1.5rem;
+            }
+
+            .submit-btn {
+                padding: 20px 48px;
+                font-size: 1.1rem;
+                width: 100%;
+            }
+
+            .final-section {
+                margin-top: 70px;
+                padding: 50px 20px;
+            }
+
+            .final-section .signature {
+                font-size: 1.6rem;
+            }
+
+            .glow-orb-1, .glow-orb-2, .glow-orb-3 {
+                opacity: 0.25;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 2.4rem;
+            }
+
+            .tagline {
+                font-size: 1.05rem;
+            }
+
+            .text-block {
+                padding: 28px 20px;
+            }
+
+            .form-section {
+                padding: 32px 16px;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 16px 18px;
+            }
+
+            .checkbox-group {
+                padding: 20px 16px;
+            }
+        }
+
+        /* Animação de loading no botão */
+        .submit-btn.loading {
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+
+        .submit-btn.loading .btn-text,
+        .submit-btn.loading svg {
+            display: none;
+        }
+
+        .submit-btn .loading-content {
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .submit-btn.loading .loading-content {
+            display: flex;
+        }
+
+        .loading-text {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: white;
+            letter-spacing: 0.5px;
+        }
+
+        .loading-dots {
+            display: inline-flex;
+            gap: 4px;
+            margin-left: 2px;
+        }
+
+        .loading-dots span {
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            animation: dotPulse 1.4s ease-in-out infinite;
+        }
+
+        .loading-dots span:nth-child(1) { animation-delay: 0s; }
+        .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes dotPulse {
+            0%, 80%, 100% { 
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+            40% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Success message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 48px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--turquesa), var(--ciano));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 2.5rem;
+        }
+
+        .success-message h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            color: var(--branco);
+            margin-bottom: 16px;
+        }
+
+        .success-message p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo">Paraty GO!</div>
+        <div class="loading-spinner"></div>
+        <div class="loading-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <p class="loading-text">Carregando experiências...</p>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <div class="page-content" id="pageContent">
+        <!-- Blobs animados de fundo -->
+        <div class="bg-blobs">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+            <div class="blob blob-4"></div>
+        </div>
+
+        <div class="container">
+            <!-- Hero -->
+            <section class="hero">
+                <h1 class="logo">Paraty GO!</h1>
+                <p class="tagline">O futuro do turismo em Paraty começa com você</p>
+                <p class="tagline-sub">Marketplace de Experiências Turísticas</p>
+                <div class="divider"></div>
+                <div class="scroll-indicator">
+                    <span></span>
+                </div>
+            </section>
+
+        <!-- Introdução -->
+        <section class="content-section">
+            <div class="text-block">
+                <p class="intro-text highlight" style="text-align: center; font-size: 1.8rem; margin-bottom: 28px; font-family: 'Poppins', sans-serif; font-weight: 600; letter-spacing: -0.5px; color: #f59e0b;">
+                    É uma honra enorme receber você aqui.
+                </p>
+                <p>
+                    Ao chegar nesta página, você dá o primeiro passo para fazer parte de um <span class="emphasis">ecossistema que está transformando</span> a maneira como turistas descobrem, reservam e vivem as experiências de Paraty.
+                </p>
+                <p>
+                    O <span class="emphasis">Paraty GO!</span> nasceu com um propósito claro: <strong>conectar pessoas às melhores vivências da nossa cidade</strong> — com inteligência, organização e tecnologia.
+                </p>
+                <p>
+                    Para isso, buscamos parceiros que compartilham dos mesmos valores de <span class="emphasis">cuidado, qualidade e compromisso</span> com o visitante.
+                </p>
+            </div>
+        </section>
+
+        <!-- Por que avaliação? -->
+        <section class="content-section">
+            <h2 class="section-title">Por que realizamos uma <span>avaliação prévia</span>?</h2>
+            <div class="text-block">
+                <p>
+                    Para manter nossa plataforma <span class="emphasis">transparente, confiável e alinhada às expectativas dos turistas</span>, é essencial garantir que cada serviço listado entregue segurança, qualidade e boa experiência.
+                </p>
+                <p>
+                    Essa avaliação não existe para dificultar sua entrada, e sim para garantir que:
+                </p>
+                <p style="text-align: left; padding-left: 20px;">
+                    ✓ O visitante tenha uma <span class="emphasis">experiência excelente</span><br>
+                    ✓ O prestador seja <span class="emphasis">corretamente representado</span><br>
+                    ✓ O turismo local evolua com <span class="emphasis">padrão e responsabilidade</span>
+                </p>
+                <p style="text-align: center; font-size: 1.15rem; font-weight: 500; color: var(--ciano-agua); margin-top: 24px;">
+                    Nosso objetivo é valorizar quem trabalha direito e criar um ambiente onde todos crescem juntos.
+                </p>
+            </div>
+        </section>
+
+        <!-- Benefícios -->
+        <section class="content-section">
+            <h2 class="section-title">No Paraty GO!, seu negócio <span>ganha</span></h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">👁️</div>
+                    <h3>Mais Visibilidade</h3>
+                    <p>Apareça nas recomendações inteligentes e seja encontrado por turistas que procuram exatamente o que você oferece.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📅</div>
+                    <h3>Mais Reservas</h3>
+                    <p>Uma plataforma integrada com IA que organiza, simplifica escolhas e aproxima visitantes dos serviços que melhor atendem às suas expectativas.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⭐</div>
+                    <h3>Mais Credibilidade</h3>
+                    <p>Faça parte de uma plataforma que prioriza qualidade e seriedade no turismo local.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🤝</div>
+                    <h3>Mais Conexão</h3>
+                    <p>Receba visitantes qualificados, alinhados ao tipo de experiência que você oferece.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mensagem de parceria -->
+        <section class="content-section partnership-section">
+            <div class="partnership-container">
+                
+                <div class="partnership-content">
+                    <p class="partnership-intro">
+                        Aqui, você não é apenas mais um prestador.
+                    </p>
+                    
+                    <div class="partnership-highlight">
+                        <span class="highlight-bar"></span>
+                        <p>É um <span class="text-gradient">parceiro</span> que representa a essência do turismo que queremos promover em <span class="text-gradient">Paraty</span></p>
+                    </div>
+                    
+                    <div class="partnership-footer">
+                        <div class="decorative-line"></div>
+                        <p class="partnership-closing">
+                            ✨ Estamos felizes em caminhar com você ✨
+                        </p>
+                        <div class="decorative-line"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formulário -->
+        <section class="form-section" id="formulario">
+            <h2 class="form-title">Cadastre seu Serviço</h2>
+            <p class="form-subtitle">Preencha os dados abaixo com tranquilidade. Nossa equipe analisará seu serviço e entrará em contato em até 48 horas.</p>
+
+            <form id="prestadorForm">
+                <div class="form-grid">
+                    <!-- 1. Nome da empresa -->
+                    <div class="form-group">
+                        <label for="nomeEmpresa">Nome da Empresa <span class="required">*</span></label>
+                        <input type="text" id="nomeEmpresa" name="nomeEmpresa" placeholder="Ex: Lancha Paradise Paraty" required>
+                    </div>
+
+                    <!-- 2. Categoria do serviço -->
+                    <div class="form-group">
+                        <label for="categoria">Categoria do Serviço <span class="required">*</span></label>
+                        <select id="categoria" name="categoria" required>
+                            <option value="">Selecione uma categoria</option>
+                            <option value="passeio-lancha">Passeio de Lancha</option>
+                            <option value="passeio-escuna">Passeio de Escuna</option>
+                            <option value="passeio-barco">Passeio de Barco</option>
+                            <option value="passeio-kayak">Passeio de Kayak / Stand Up</option>
+                            <option value="passeio-jeep">Passeio de Jeep 4x4</option>
+                            <option value="transfer">Transfer</option>
+                            <option value="pousada">Pousada / Hospedagem</option>
+                            <option value="restaurante">Restaurante / Gastronomia</option>
+                            <option value="guia-turismo">Guia de Turismo</option>
+                            <option value="mergulho">Mergulho</option>
+                            <option value="trilha">Trilhas / Ecoturismo</option>
+                            <option value="fotografia">Fotografia / Vídeo</option>
+                            <option value="aluguel-equipamentos">Aluguel de Equipamentos</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+
+                    <!-- 3. Descrição curta -->
+                    <div class="form-group full-width">
+                        <label for="descricao">Descrição Curta do Serviço <span class="required">*</span></label>
+                        <textarea id="descricao" name="descricao" placeholder="Descreva brevemente o que você oferece, os diferenciais e principais atrativos..." required></textarea>
+                    </div>
+
+                    <!-- 4. Nome do responsável -->
+                    <div class="form-group">
+                        <label for="nomeResponsavel">Nome do Responsável <span class="required">*</span></label>
+                        <input type="text" id="nomeResponsavel" name="nomeResponsavel" placeholder="Seu nome completo" required>
+                    </div>
+
+                    <!-- 5. WhatsApp -->
+                    <div class="form-group">
+                        <label for="whatsapp">WhatsApp de Contato <span class="required">*</span></label>
+                        <input type="tel" id="whatsapp" name="whatsapp" placeholder="(24) 99999-9999" required>
+                    </div>
+
+                    <!-- 6. E-mail comercial -->
+                    <div class="form-group">
+                        <label for="email">E-mail Comercial <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="contato@suaempresa.com.br" required>
+                    </div>
+
+                    <!-- 7. Endereço -->
+                    <div class="form-group">
+                        <label for="endereco">Endereço / Local de Saída <span class="required">*</span></label>
+                        <input type="text" id="endereco" name="endereco" placeholder="Ex: Cais de Paraty, Pier do Centro" required>
+                    </div>
+
+                    <!-- 8. Capacidade / Tipo de serviço -->
+                    <div class="form-group full-width">
+                        <label for="capacidade">Capacidade / Tipo de Serviço <span class="required">*</span></label>
+                        <input type="text" id="capacidade" name="capacidade" placeholder="Ex: Lancha para até 12 pessoas / 4 quartos com ar-condicionado / Jeep para 6 passageiros" required>
+                    </div>
+
+                    <!-- 9. Instagram / Site -->
+                    <div class="form-group full-width">
+                        <label for="redesSociais">Instagram / Site (opcional)</label>
+                        <input type="text" id="redesSociais" name="redesSociais" placeholder="@seuinstagram ou www.seusite.com.br">
+                    </div>
+
+                    <!-- 10. O que torna especial -->
+                    <div class="form-group full-width">
+                        <label for="diferencial">O que torna seu serviço especial? <span class="required">*</span></label>
+                        <textarea id="diferencial" name="diferencial" placeholder="Conte o que faz seu serviço ser único. O cuidado, a história, a experiência... Queremos conhecer você!" required></textarea>
+                    </div>
+
+                    <!-- 11. Upload de documentos -->
+                    <div class="form-group full-width">
+                        <label>Upload de Documentos (opcional)</label>
+                        <div class="file-upload">
+                            <div class="file-upload-area">
+                                <input type="file" id="documentos" name="documentos" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+                                <div class="upload-icon">📎</div>
+                                <p class="upload-text">Clique ou arraste arquivos aqui</p>
+                                <p class="upload-hint">Licenças, fotos, alvará, certificados (PDF, JPG, PNG, DOC)</p>
+                            </div>
+                            <div class="file-list" id="fileList"></div>
+                        </div>
+                    </div>
+
+                    <!-- 12. Checkbox de termos -->
+                    <div class="form-group full-width">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="termos" name="termos" required>
+                            <label for="termos">
+                                Aceito os termos de parceria do Paraty GO! e autorizo o uso das informações fornecidas para análise e eventual contato comercial. <span class="required">*</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botão de envio -->
+                <div class="submit-container">
+                    <button type="submit" class="submit-btn" aria-label="Enviar formulário de cadastro">
+                        <span class="btn-text">Enviar Cadastro</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                        <span class="loading-content">
+                            <span class="loading-text">Enviando</span>
+                            <span class="loading-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </span>
+                        </span>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Mensagem de sucesso removida - redirecionamento para confirmacao.html -->
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2025 Paraty GO! — Todos os direitos reservados</p>
+        </footer>
+    </div>
+    </div>
+
+    <script>
+        // ===== LOADING SCREEN CONTROL =====
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const pageContent = document.getElementById('pageContent');
+            
+            // Pequeno delay para garantir que tudo carregou
+            setTimeout(function() {
+                loadingScreen.classList.add('hidden');
+                pageContent.classList.add('loaded');
+            }, 800);
+        });
+
+        // Máscara de telefone
+        const whatsappInput = document.getElementById('whatsapp');
+        whatsappInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.slice(0, 11);
+            
+            if (value.length > 0) {
+                if (value.length <= 2) {
+                    value = `(${value}`;
+                } else if (value.length <= 7) {
+                    value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
+                } else {
+                    value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
+                }
+            }
+            e.target.value = value;
+        });
+
+        // Atualizar placeholder de capacidade com base na categoria
+        const categoriaSelect = document.getElementById('categoria');
+        const capacidadeInput = document.getElementById('capacidade');
+        
+        const placeholders = {
+            'passeio-lancha': 'Ex: Lancha para até 12 pessoas, com cooler e som',
+            'passeio-escuna': 'Ex: Escuna para 40 pessoas, com bar e banheiro',
+            'passeio-barco': 'Ex: Barco para 8 pessoas, roteiro personalizado',
+            'passeio-kayak': 'Ex: 10 kayaks disponíveis / 5 pranchas de SUP',
+            'passeio-jeep': 'Ex: Jeep 4x4 para 6 passageiros',
+            'transfer': 'Ex: Van para 15 passageiros / Carro executivo 4 lugares',
+            'pousada': 'Ex: 8 quartos, piscina, café da manhã incluso',
+            'restaurante': 'Ex: 50 lugares, especialidade em frutos do mar',
+            'guia-turismo': 'Ex: Guia credenciado, trilhas e centro histórico',
+            'mergulho': 'Ex: Curso PADI, batismo, mergulho autônomo',
+            'trilha': 'Ex: Trilhas leves a moderadas, grupos até 15 pessoas',
+            'fotografia': 'Ex: Ensaios, drone, edição profissional',
+            'aluguel-equipamentos': 'Ex: Bicicletas, snorkel, caiaques',
+            'outro': 'Descreva a capacidade ou tipo do seu serviço'
+        };
+
+        categoriaSelect.addEventListener('change', function() {
+            const categoria = this.value;
+            capacidadeInput.placeholder = placeholders[categoria] || 'Ex: Capacidade ou características do serviço';
+        });
+
+        // Exibir arquivos selecionados
+        const documentosInput = document.getElementById('documentos');
+        const fileList = document.getElementById('fileList');
+
+        documentosInput.addEventListener('change', function() {
+            const files = Array.from(this.files);
+            if (files.length > 0) {
+                fileList.innerHTML = files.map(f => `📄 ${f.name}`).join('<br>');
+            } else {
+                fileList.innerHTML = '';
+            }
+        });
+
+        // Formulário submit
+        const form = document.getElementById('prestadorForm');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = form.querySelector('.submit-btn');
+            submitBtn.classList.add('loading');
+
+            try {
+                const formData = new FormData(form);
+                
+                const response = await fetch('http://localhost:3001/api/cadastro', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Redirecionar para página de confirmação
+                    window.location.href = 'confirmacao.html';
+                } else {
+                    throw new Error(result.message || 'Erro ao enviar cadastro');
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.');
+            } finally {
+                submitBtn.classList.remove('loading');
+            }
+        });
+
+        // Animação de entrada ao scroll - mais sofisticada
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -80px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Delay escalonado para cada elemento
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        // Observar todas as seções
+        document.querySelectorAll('.content-section, .form-section, .cta-section').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Animação especial para os cards de benefício
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    const cards = entry.target.querySelectorAll('.benefit-card');
+                    cards.forEach((card, i) => {
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, i * 60);
+                    });
+                }
+            });
+        }, { threshold: 0.05 });
+
+        const benefitsGrid = document.querySelector('.benefits-grid');
+        if (benefitsGrid) {
+            cardObserver.observe(benefitsGrid);
+            document.querySelectorAll('.benefit-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+        }
+
+        // Efeito parallax suave nos orbs de luz
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const scrolled = window.pageYOffset;
+                    const orbs = document.querySelectorAll('.glow-orb');
+                    orbs.forEach((orb, i) => {
+                        const speed = 0.05 * (i + 1);
+                        orb.style.transform = `translateY(${scrolled * speed}px)`;
+                    });
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Smooth reveal para campos do formulário
+        const formObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const groups = entry.target.querySelectorAll('.form-group');
+                    groups.forEach((group, i) => {
+                        setTimeout(() => {
+                            group.style.opacity = '1';
+                            group.style.transform = 'translateY(0)';
+                        }, i * 40);
+                    });
+                }
+            });
+        }, { threshold: 0.05 });
+
+        const formGrid = document.querySelector('.form-grid');
+        if (formGrid) {
+            formObserver.observe(formGrid);
+            document.querySelectorAll('.form-group').forEach(group => {
+                group.style.opacity = '0';
+                group.style.transform = 'translateY(15px)';
+                group.style.transition = 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+        }
+    </script>
+</body>
+</html>

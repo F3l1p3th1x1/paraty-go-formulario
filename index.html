@@ -1032,7 +1032,9 @@
             align-items: center;
             justify-content: center;
             gap: 14px;
-            padding: 22px 64px;
+            min-width: 280px;
+            height: 68px;
+            padding: 0 64px;
             background: linear-gradient(135deg, var(--sky-claro) 0%, var(--sky-medio) 50%, var(--sky-escuro) 100%);
             border: none;
             border-radius: 18px;
@@ -1041,7 +1043,7 @@
             font-size: 1.2rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 
                 0 12px 40px rgba(14, 165, 233, 0.4),
                 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -1324,11 +1326,11 @@
         /* Animação de loading no botão */
         .submit-btn.loading {
             pointer-events: none;
-            cursor: not-allowed;
+            cursor: wait;
         }
 
         .submit-btn.loading .btn-text,
-        .submit-btn.loading svg {
+        .submit-btn.loading > svg {
             display: none;
         }
 
@@ -1343,24 +1345,68 @@
         }
 
         .loading-text {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             font-weight: 600;
             color: white;
             letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .loading-dots {
             display: inline-flex;
-            gap: 4px;
-            margin-left: 2px;
+            gap: 3px;
+            margin-left: 0;
         }
 
         .loading-dots span {
-            width: 5px;
-            height: 5px;
+            width: 4px;
+            height: 4px;
             background: white;
             border-radius: 50%;
             animation: dotPulse 1.4s ease-in-out infinite;
+        }
+
+        /* Overlay de transição */
+        .transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0f;
+            z-index: 99999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 24px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .transition-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .transition-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(103, 232, 249, 0.2);
+            border-top-color: var(--ciano);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .transition-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: 0.5px;
         }
 
         .loading-dots span:nth-child(1) { animation-delay: 0s; }
@@ -1427,6 +1473,12 @@
             <span></span>
         </div>
         <p class="loading-text">Carregando experiências...</p>
+    </div>
+
+    <!-- Overlay de transição para página de confirmação -->
+    <div class="transition-overlay" id="transitionOverlay">
+        <div class="transition-spinner"></div>
+        <p class="transition-text">Enviando seu cadastro...</p>
     </div>
 
     <!-- Conteúdo Principal -->
@@ -1752,6 +1804,7 @@
 
         // Formulário submit
         const form = document.getElementById('prestadorForm');
+        const transitionOverlay = document.getElementById('transitionOverlay');
 
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -1770,15 +1823,19 @@
                 const result = await response.json();
 
                 if (result.success) {
-                    // Redirecionar para página de confirmação
-                    window.location.href = 'confirmacao.html';
+                    // Mostrar overlay de transição
+                    transitionOverlay.classList.add('show');
+                    
+                    // Aguardar um momento para a transição suave
+                    setTimeout(() => {
+                        window.location.href = 'confirmacao.html';
+                    }, 500);
                 } else {
                     throw new Error(result.message || 'Erro ao enviar cadastro');
                 }
             } catch (error) {
                 console.error('Erro:', error);
                 alert('Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.');
-            } finally {
                 submitBtn.classList.remove('loading');
             }
         });

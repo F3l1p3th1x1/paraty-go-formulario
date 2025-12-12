@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Landing page do Paraty GO! - Marketplace de Turismo",
   "scripts": {
-    "dev": "npx live-server --port=3000 --open=index.html --ignore=node_modules,.git,.env,*.log,screenshots,*.tmp,*.temp,~*,*~ --wait=1000 --no-browser",
-    "dev:open": "npx live-server --port=3000 --open=index.html --ignore=node_modules,.git,.env,*.log,screenshots,*.tmp,*.temp,~*,*~ --wait=1000",
+    "dev": "npx live-server --port=3000 --open=index.html --watch=index.html,confirmacao.html --wait=2000 --no-browser",
+    "dev:open": "npx live-server --port=3000 --open=index.html --watch=index.html,confirmacao.html --wait=2000",
     "server": "node server.js",
     "start": "concurrently \"npm run server\" \"npm run dev\"",
     "dev:full": "concurrently --names \"API,WEB\" --prefix-colors \"cyan,green\" \"npm run server\" \"npm run dev:open\"",

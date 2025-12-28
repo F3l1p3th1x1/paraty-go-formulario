@@ -23,6 +23,7 @@
   "author": "Paraty GO!",
   "license": "MIT",
   "dependencies": {
+    "@google-cloud/firestore": "^7.3.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",

@@ -2059,7 +2059,7 @@
             try {
                 const formData = new FormData(form);
                 
-                const response = await fetch('http://localhost:3001/api/cadastro', {
+                const response = await fetch('/api/cadastro', {
                     method: 'POST',
                     body: formData
                 });

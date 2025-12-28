@@ -35,5 +35,8 @@
     "concurrently": "^8.2.2",
     "live-server": "^1.2.2",
     "puppeteer": "^21.11.0"
+  },
+  "engines": {
+    "node": ">=18.x"
   }
 }

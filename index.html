@@ -911,6 +911,104 @@
             line-height: 1.6;
         }
 
+        /* Character Counter */
+        .char-counter {
+            display: block;
+            text-align: right;
+            font-size: 0.75rem;
+            color: rgba(103, 232, 249, 0.5);
+            margin-top: 6px;
+            transition: color 0.3s ease;
+        }
+
+        .char-counter.warning {
+            color: #f59e0b;
+        }
+
+        .char-counter.danger {
+            color: #ef4444;
+            font-weight: 600;
+        }
+
+        /* Auto-save indicator */
+        .autosave-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(12, 25, 41, 0.95);
+            border: 1px solid rgba(103, 232, 249, 0.3);
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            color: var(--ciano-agua);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .autosave-indicator.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .autosave-indicator.saved {
+            border-color: #22c55e;
+            color: #22c55e;
+        }
+
+        /* Error toast */
+        .error-toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            z-index: 10000;
+            box-shadow: 0 8px 32px rgba(220, 38, 38, 0.4);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            max-width: 90%;
+            text-align: center;
+        }
+
+        .error-toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .error-toast .error-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .error-toast .error-message {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .error-toast .retry-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: background 0.2s;
+        }
+
+        .error-toast .retry-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
         /* File Upload */
         .file-upload {
             position: relative;
@@ -1725,6 +1823,19 @@
         <p class="transition-text">Enviando seu cadastro...</p>
     </div>
 
+    <!-- Indicador de auto-save -->
+    <div class="autosave-indicator" id="autosaveIndicator">
+        <span>💾</span>
+        <span id="autosaveText">Salvando...</span>
+    </div>
+
+    <!-- Toast de erro -->
+    <div class="error-toast" id="errorToast">
+        <div class="error-title">❌ Ops! Algo deu errado</div>
+        <div class="error-message" id="errorMessage">Não foi possível enviar o formulário.</div>
+        <button class="retry-btn" id="retryBtn">🔄 Tentar novamente</button>
+    </div>
+
     <!-- Conteúdo Principal -->
     <div class="page-content" id="pageContent">
         <!-- Blobs animados de fundo -->
@@ -1848,7 +1959,8 @@
                     <!-- 1. Nome da empresa -->
                     <div class="form-group">
                         <label for="nomeEmpresa">Nome da Empresa <span class="required">*</span></label>
-                        <input type="text" id="nomeEmpresa" name="nomeEmpresa" placeholder="Ex: Lancha Paradise Paraty" required>
+                        <input type="text" id="nomeEmpresa" name="nomeEmpresa" placeholder="Ex: Lancha Paradise Paraty" required maxlength="100">
+                        <span class="char-counter" data-for="nomeEmpresa">0/100</span>
                     </div>
 
                     <!-- 2. Categoria do serviço -->
@@ -1876,13 +1988,15 @@
                     <!-- 3. Descrição curta -->
                     <div class="form-group full-width">
                         <label for="descricao">Descrição Curta do Serviço <span class="required">*</span></label>
-                        <textarea id="descricao" name="descricao" placeholder="Descreva brevemente o que você oferece, os diferenciais e principais atrativos..." required></textarea>
+                        <textarea id="descricao" name="descricao" placeholder="Descreva brevemente o que você oferece, os diferenciais e principais atrativos..." required maxlength="1000"></textarea>
+                        <span class="char-counter" data-for="descricao">0/1000</span>
                     </div>
 
                     <!-- 4. Nome do responsável -->
                     <div class="form-group">
                         <label for="nomeResponsavel">Nome do Responsável <span class="required">*</span></label>
-                        <input type="text" id="nomeResponsavel" name="nomeResponsavel" placeholder="Seu nome completo" required>
+                        <input type="text" id="nomeResponsavel" name="nomeResponsavel" placeholder="Seu nome completo" required maxlength="100">
+                        <span class="char-counter" data-for="nomeResponsavel">0/100</span>
                     </div>
 
                     <!-- 5. WhatsApp -->
@@ -1900,25 +2014,29 @@
                     <!-- 7. Endereço -->
                     <div class="form-group">
                         <label for="endereco">Endereço / Local de Saída <span class="required">*</span></label>
-                        <input type="text" id="endereco" name="endereco" placeholder="Ex: Cais de Paraty, Pier do Centro" required>
+                        <input type="text" id="endereco" name="endereco" placeholder="Ex: Cais de Paraty, Pier do Centro" required maxlength="200">
+                        <span class="char-counter" data-for="endereco">0/200</span>
                     </div>
 
                     <!-- 8. Capacidade / Tipo de serviço -->
                     <div class="form-group full-width">
                         <label for="capacidade">Capacidade / Tipo de Serviço <span class="required">*</span></label>
-                        <input type="text" id="capacidade" name="capacidade" placeholder="Ex: Lancha para até 12 pessoas / 4 quartos com ar-condicionado / Jeep para 6 passageiros" required>
+                        <input type="text" id="capacidade" name="capacidade" placeholder="Ex: Lancha para até 12 pessoas / 4 quartos com ar-condicionado / Jeep para 6 passageiros" required maxlength="300">
+                        <span class="char-counter" data-for="capacidade">0/300</span>
                     </div>
 
                     <!-- 9. Instagram / Site -->
                     <div class="form-group full-width">
                         <label for="redesSociais">Instagram / Site (opcional)</label>
-                        <input type="text" id="redesSociais" name="redesSociais" placeholder="@seuinstagram ou www.seusite.com.br">
+                        <input type="text" id="redesSociais" name="redesSociais" placeholder="@seuinstagram ou www.seusite.com.br" maxlength="200">
+                        <span class="char-counter" data-for="redesSociais">0/200</span>
                     </div>
 
                     <!-- 10. O que torna especial -->
                     <div class="form-group full-width">
                         <label for="diferencial">O que torna seu serviço especial? <span class="required">*</span></label>
-                        <textarea id="diferencial" name="diferencial" placeholder="Conte o que faz seu serviço ser único. O cuidado, a história, a experiência... Queremos conhecer você!" required></textarea>
+                        <textarea id="diferencial" name="diferencial" placeholder="Conte o que faz seu serviço ser único. O cuidado, a história, a experiência... Queremos conhecer você!" required maxlength="1500"></textarea>
+                        <span class="char-counter" data-for="diferencial">0/1500</span>
                     </div>
 
                     <!-- 11. Upload de documentos -->
@@ -1977,19 +2095,168 @@
     </div>
 
     <script>
+        // ===== CONFIGURAÇÕES =====
+        const STORAGE_KEY = 'paratygo_form_draft';
+        const AUTOSAVE_DELAY = 1000; // 1 segundo
+        let autosaveTimeout = null;
+        let lastFormData = null;
+
+        // ===== ELEMENTOS DO DOM =====
+        const form = document.getElementById('prestadorForm');
+        const transitionOverlay = document.getElementById('transitionOverlay');
+        const autosaveIndicator = document.getElementById('autosaveIndicator');
+        const autosaveText = document.getElementById('autosaveText');
+        const errorToast = document.getElementById('errorToast');
+        const errorMessage = document.getElementById('errorMessage');
+        const retryBtn = document.getElementById('retryBtn');
+
         // ===== LOADING SCREEN CONTROL =====
         window.addEventListener('load', function() {
             const loadingScreen = document.getElementById('loadingScreen');
             const pageContent = document.getElementById('pageContent');
             
-            // Pequeno delay para garantir que tudo carregou
             setTimeout(function() {
                 loadingScreen.classList.add('hidden');
                 pageContent.classList.add('loaded');
+                
+                // Restaurar rascunho salvo
+                restoreFormDraft();
             }, 800);
         });
 
-        // Máscara de telefone
+        // ===== CONTADOR DE CARACTERES =====
+        function initCharCounters() {
+            const counters = document.querySelectorAll('.char-counter');
+            counters.forEach(counter => {
+                const fieldId = counter.dataset.for;
+                const field = document.getElementById(fieldId);
+                if (field) {
+                    const maxLength = field.maxLength;
+                    
+                    // Atualizar contador inicial
+                    updateCounter(field, counter, maxLength);
+                    
+                    // Listener para atualização em tempo real
+                    field.addEventListener('input', () => {
+                        updateCounter(field, counter, maxLength);
+                    });
+                }
+            });
+        }
+
+        function updateCounter(field, counter, maxLength) {
+            const currentLength = field.value.length;
+            counter.textContent = `${currentLength}/${maxLength}`;
+            
+            const percentage = (currentLength / maxLength) * 100;
+            counter.classList.remove('warning', 'danger');
+            
+            if (percentage >= 95) {
+                counter.classList.add('danger');
+            } else if (percentage >= 80) {
+                counter.classList.add('warning');
+            }
+        }
+
+        // ===== AUTO-SAVE (RASCUNHO LOCAL) =====
+        function saveFormDraft() {
+            const formData = {};
+            const inputs = form.querySelectorAll('input, select, textarea');
+            
+            inputs.forEach(input => {
+                if (input.type === 'file') return; // Não salvar arquivos
+                if (input.type === 'checkbox') {
+                    formData[input.name] = input.checked;
+                } else {
+                    formData[input.name] = input.value;
+                }
+            });
+            
+            // Só salvar se houve mudança
+            const currentData = JSON.stringify(formData);
+            if (currentData === lastFormData) return;
+            lastFormData = currentData;
+            
+            try {
+                localStorage.setItem(STORAGE_KEY, currentData);
+                showAutosaveIndicator('✓ Rascunho salvo', true);
+            } catch (e) {
+                console.warn('Não foi possível salvar rascunho:', e);
+            }
+        }
+
+        function restoreFormDraft() {
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (!saved) return;
+                
+                const formData = JSON.parse(saved);
+                let hasData = false;
+                
+                Object.keys(formData).forEach(key => {
+                    const input = form.querySelector(`[name="${key}"]`);
+                    if (input && formData[key]) {
+                        if (input.type === 'checkbox') {
+                            input.checked = formData[key];
+                        } else {
+                            input.value = formData[key];
+                        }
+                        hasData = true;
+                    }
+                });
+                
+                if (hasData) {
+                    // Atualizar contadores
+                    document.querySelectorAll('.char-counter').forEach(counter => {
+                        const fieldId = counter.dataset.for;
+                        const field = document.getElementById(fieldId);
+                        if (field) {
+                            updateCounter(field, counter, field.maxLength);
+                        }
+                    });
+                    
+                    showAutosaveIndicator('📂 Rascunho restaurado', true);
+                }
+            } catch (e) {
+                console.warn('Não foi possível restaurar rascunho:', e);
+            }
+        }
+
+        function clearFormDraft() {
+            try {
+                localStorage.removeItem(STORAGE_KEY);
+            } catch (e) {
+                console.warn('Não foi possível limpar rascunho:', e);
+            }
+        }
+
+        function showAutosaveIndicator(text, saved = false) {
+            autosaveText.textContent = text;
+            autosaveIndicator.classList.toggle('saved', saved);
+            autosaveIndicator.classList.add('show');
+            
+            setTimeout(() => {
+                autosaveIndicator.classList.remove('show');
+            }, 2000);
+        }
+
+        // Listener para auto-save em todos os campos
+        form.addEventListener('input', () => {
+            if (autosaveTimeout) clearTimeout(autosaveTimeout);
+            autosaveTimeout = setTimeout(saveFormDraft, AUTOSAVE_DELAY);
+        });
+
+        // ===== ERRO TOAST =====
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorToast.classList.add('show');
+        }
+
+        function hideError() {
+            errorToast.classList.remove('show');
+        }
+
+        // ===== MÁSCARA DE TELEFONE =====
         const whatsappInput = document.getElementById('whatsapp');
         whatsappInput.addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
@@ -2007,7 +2274,7 @@
             e.target.value = value;
         });
 
-        // Atualizar placeholder de capacidade com base na categoria
+        // ===== PLACEHOLDER DINÂMICO =====
         const categoriaSelect = document.getElementById('categoria');
         const capacidadeInput = document.getElementById('capacidade');
         
@@ -2033,44 +2300,68 @@
             capacidadeInput.placeholder = placeholders[categoria] || 'Ex: Capacidade ou características do serviço';
         });
 
-        // Exibir arquivos selecionados
+        // ===== EXIBIR ARQUIVOS SELECIONADOS =====
         const documentosInput = document.getElementById('documentos');
         const fileList = document.getElementById('fileList');
 
         documentosInput.addEventListener('change', function() {
             const files = Array.from(this.files);
             if (files.length > 0) {
-                fileList.innerHTML = files.map(f => `📄 ${f.name}`).join('<br>');
+                // Verificar tamanho dos arquivos
+                const maxSize = 10 * 1024 * 1024; // 10MB
+                const oversizedFiles = files.filter(f => f.size > maxSize);
+                
+                if (oversizedFiles.length > 0) {
+                    showError(`Arquivo(s) muito grande(s): ${oversizedFiles.map(f => f.name).join(', ')}. Máximo 10MB por arquivo.`);
+                    this.value = '';
+                    fileList.innerHTML = '';
+                    return;
+                }
+                
+                fileList.innerHTML = files.map(f => {
+                    const sizeMB = (f.size / 1024 / 1024).toFixed(2);
+                    return `📄 ${f.name} (${sizeMB}MB)`;
+                }).join('<br>');
             } else {
                 fileList.innerHTML = '';
             }
         });
 
-        // Formulário submit
-        const form = document.getElementById('prestadorForm');
-        const transitionOverlay = document.getElementById('transitionOverlay');
+        // ===== ENVIO DO FORMULÁRIO COM RETRY =====
+        let isSubmitting = false;
 
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
+        async function submitForm(retryCount = 0) {
+            const maxRetries = 2;
             const submitBtn = form.querySelector('.submit-btn');
+            
+            if (isSubmitting) return;
+            isSubmitting = true;
             submitBtn.classList.add('loading');
+            hideError();
 
             try {
                 const formData = new FormData(form);
                 
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 30000); // 30s timeout
+                
                 const response = await fetch('http://localhost:3001/api/cadastro', {
                     method: 'POST',
-                    body: formData
+                    body: formData,
+                    signal: controller.signal
                 });
+                
+                clearTimeout(timeoutId);
 
                 const result = await response.json();
 
                 if (result.success) {
+                    // Limpar rascunho salvo
+                    clearFormDraft();
+                    
                     // Mostrar overlay de transição
                     transitionOverlay.classList.add('show');
                     
-                    // Aguardar um momento para a transição suave
                     setTimeout(() => {
                         window.location.href = 'confirmacao.html';
                     }, 500);
@@ -2079,12 +2370,47 @@
                 }
             } catch (error) {
                 console.error('Erro:', error);
-                alert('Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.');
+                
+                let errorMsg = 'Não foi possível enviar o formulário.';
+                
+                if (error.name === 'AbortError') {
+                    errorMsg = 'A conexão demorou muito. Verifique sua internet.';
+                } else if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+                    errorMsg = 'Sem conexão com o servidor. Verifique se o servidor está rodando.';
+                } else if (error.message) {
+                    errorMsg = error.message;
+                }
+                
+                // Tentar novamente automaticamente
+                if (retryCount < maxRetries) {
+                    showAutosaveIndicator(`🔄 Tentando novamente (${retryCount + 1}/${maxRetries})...`, false);
+                    isSubmitting = false;
+                    setTimeout(() => submitForm(retryCount + 1), 2000);
+                    return;
+                }
+                
+                showError(`${errorMsg} Seu rascunho está salvo, não precisa preencher tudo de novo!`);
                 submitBtn.classList.remove('loading');
+            } finally {
+                isSubmitting = false;
             }
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitForm();
         });
 
-        // Animação de entrada ao scroll - mais sofisticada
+        // Botão de retry manual
+        retryBtn.addEventListener('click', function() {
+            hideError();
+            submitForm();
+        });
+
+        // ===== INICIALIZAÇÃO =====
+        initCharCounters();
+
+        // ===== ANIMAÇÕES DE SCROLL =====
         const observerOptions = {
             threshold: 0.15,
             rootMargin: '0px 0px -80px 0px'
@@ -2093,7 +2419,6 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    // Delay escalonado para cada elemento
                     setTimeout(() => {
                         entry.target.classList.add('visible');
                     }, index * 100);
@@ -2101,7 +2426,6 @@
             });
         }, observerOptions);
 
-        // Observar todas as seções
         document.querySelectorAll('.content-section, .form-section, .cta-section').forEach(el => {
             observer.observe(el);
         });
@@ -2172,6 +2496,18 @@
                 group.style.transition = 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)';
             });
         }
+
+        // Aviso antes de sair da página com formulário preenchido
+        window.addEventListener('beforeunload', function(e) {
+            const inputs = form.querySelectorAll('input:not([type="checkbox"]), textarea');
+            const hasData = Array.from(inputs).some(input => input.value.trim() !== '');
+            
+            if (hasData && !transitionOverlay.classList.contains('show')) {
+                e.preventDefault();
+                e.returnValue = 'Você tem dados não salvos. Deseja realmente sair?';
+                return e.returnValue;
+            }
+        });
     </script>
 </body>
 </html>

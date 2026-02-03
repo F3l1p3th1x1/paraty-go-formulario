@@ -1084,6 +1084,13 @@
             margin-top: 10px;
         }
 
+        .upload-limit {
+            color: #f59e0b;
+            font-size: 0.8rem;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
         .file-list {
             margin-top: 16px;
             font-size: 0.9rem;
@@ -2050,10 +2057,11 @@
                         <label>Upload de Documentos (opcional)</label>
                         <div class="file-upload">
                             <div class="file-upload-area">
-                                <input type="file" id="documentos" name="documentos" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+                                <input type="file" id="documentos" name="documentos" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
                                 <div class="upload-icon">📎</div>
                                 <p class="upload-text">Clique ou arraste arquivos aqui</p>
                                 <p class="upload-hint">Licenças, fotos, alvará, certificados (PDF, JPG, PNG, DOC)</p>
+                                <p class="upload-limit">Limite: 1 arquivo apenas</p>
                             </div>
                             <div class="file-list" id="fileList"></div>
                         </div>

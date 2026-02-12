@@ -114,8 +114,8 @@ function formatEmailHTML(data) {
                     <div class="value">${data.diferencial || 'Não informado'}</div>
                 </div>
                 <div class="field">
-                    <div class="label">Arquivos Anexados</div>
-                    <div class="value">${data.arquivosNomes || 'Nenhum arquivo enviado'}</div>
+                    <div class="label">Foto do Empreendimento</div>
+                    <div class="value">${data.arquivosNomes || 'Nenhuma foto enviada'}</div>
                 </div>
             </div>
             <div class="footer">
@@ -128,12 +128,32 @@ function formatEmailHTML(data) {
     `;
 }
 
-// Rota para receber o formulário
-app.post('/api/cadastro', upload.array('documentos', 10), async (req, res) => {
+// Rota para receber o formulário (1 arquivo apenas, máx 10MB)
+app.post('/api/cadastro', (req, res, next) => {
+    upload.single('documentos')(req, res, (err) => {
+        if (err) {
+            if (err.code === 'LIMIT_FILE_SIZE') {
+                return res.status(400).json({
+                    success: false,
+                    message: 'Arquivo muito grande. O limite é de 10MB.'
+                });
+            }
+            if (err.message === 'Tipo de arquivo não permitido') {
+                return res.status(400).json({
+                    success: false,
+                    message: 'Tipo de arquivo não permitido. Use apenas JPG, PNG, WEBP, GIF ou PDF.'
+                });
+            }
+            return res.status(400).json({
+                success: false,
+                message: 'Erro no upload do arquivo: ' + err.message
+            });
+        }
+        next();
+    });
+}, async (req, res) => {
     try {
-        const arquivosNomes = req.files && req.files.length > 0 
-            ? req.files.map(f => f.originalname).join(', ')
-            : null;
+        const arquivoNome = req.file ? req.file.originalname : null;
 
         const formData = {
             nomeEmpresa: req.body.nomeEmpresa,
@@ -146,7 +166,7 @@ app.post('/api/cadastro', upload.array('documentos', 10), async (req, res) => {
             capacidade: req.body.capacidade,
             redesSociais: req.body.redesSociais,
             diferencial: req.body.diferencial,
-            arquivosNomes: arquivosNomes,
+            arquivosNomes: arquivoNome,
             termos: req.body.termos === 'on',
             dataEnvio: admin.firestore.FieldValue.serverTimestamp(),
             status: 'pendente'
@@ -156,15 +176,14 @@ app.post('/api/cadastro', upload.array('documentos', 10), async (req, res) => {
         const docRef = await db.collection('cadastros').add(formData);
         console.log('✅ Cadastro salvo no Firebase:', docRef.id);
 
-        // Preparar anexos para email (se houver)
+        // Preparar anexo para email (se houver)
         const attachments = [];
-        if (req.files && req.files.length > 0) {
-            req.files.forEach(file => {
-                attachments.push({
-                    filename: file.originalname,
-                    content: file.buffer,
-                });
+        if (req.file) {
+            attachments.push({
+                filename: req.file.originalname,
+                content: req.file.buffer,
             });
+            console.log(`📎 Anexo: ${req.file.originalname} (${(req.file.size / 1024 / 1024).toFixed(2)}MB)`);
         }
 
         // Enviar email via Resend

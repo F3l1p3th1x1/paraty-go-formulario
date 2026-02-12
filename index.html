@@ -2052,16 +2052,16 @@
                         <span class="char-counter" data-for="diferencial">0/1500</span>
                     </div>
 
-                    <!-- 11. Upload de documentos -->
+                    <!-- 11. Upload de foto do empreendimento -->
                     <div class="form-group full-width">
-                        <label>Upload de Documentos (opcional)</label>
+                        <label>Foto do Empreendimento (opcional)</label>
                         <div class="file-upload">
                             <div class="file-upload-area">
-                                <input type="file" id="documentos" name="documentos" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
-                                <div class="upload-icon">📎</div>
-                                <p class="upload-text">Clique ou arraste arquivos aqui</p>
-                                <p class="upload-hint">Licenças, fotos, alvará, certificados (PDF, JPG, PNG, DOC)</p>
-                                <p class="upload-limit">Limite: 1 arquivo apenas</p>
+                                <input type="file" id="documentos" name="documentos" accept=".jpg,.jpeg,.png,.webp,.gif,.pdf">
+                                <div class="upload-icon">📷</div>
+                                <p class="upload-text">Clique ou arraste um arquivo aqui</p>
+                                <p class="upload-hint">Envie uma foto do seu empreendimento ou serviço para referência visual</p>
+                                <p class="upload-limit">⚠️ Limite: 1 único arquivo de até 10MB (JPG, PNG, WEBP, GIF ou PDF)</p>
                             </div>
                             <div class="file-list" id="fileList"></div>
                         </div>
@@ -2319,23 +2319,30 @@
         const fileList = document.getElementById('fileList');
 
         documentosInput.addEventListener('change', function() {
-            const files = Array.from(this.files);
-            if (files.length > 0) {
-                // Verificar tamanho dos arquivos
+            const file = this.files[0];
+            if (file) {
                 const maxSize = 10 * 1024 * 1024; // 10MB
-                const oversizedFiles = files.filter(f => f.size > maxSize);
+                const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'application/pdf'];
                 
-                if (oversizedFiles.length > 0) {
-                    showError(`Arquivo(s) muito grande(s): ${oversizedFiles.map(f => f.name).join(', ')}. Máximo 10MB por arquivo.`);
+                // Verificar tipo do arquivo
+                if (!allowedTypes.includes(file.type)) {
+                    showError(`Tipo de arquivo não permitido: ${file.name}. Use apenas JPG, PNG, WEBP, GIF ou PDF.`);
                     this.value = '';
                     fileList.innerHTML = '';
                     return;
                 }
                 
-                fileList.innerHTML = files.map(f => {
-                    const sizeMB = (f.size / 1024 / 1024).toFixed(2);
-                    return `📄 ${f.name} (${sizeMB}MB)`;
-                }).join('<br>');
+                // Verificar tamanho do arquivo
+                if (file.size > maxSize) {
+                    const sizeMB = (file.size / 1024 / 1024).toFixed(2);
+                    showError(`Arquivo muito grande (${sizeMB}MB). O limite é de 10MB. Tente reduzir o tamanho da imagem.`);
+                    this.value = '';
+                    fileList.innerHTML = '';
+                    return;
+                }
+                
+                const sizeMB = (file.size / 1024 / 1024).toFixed(2);
+                fileList.innerHTML = `✅ 📄 ${file.name} (${sizeMB}MB)`;
             } else {
                 fileList.innerHTML = '';
             }

@@ -31,7 +31,7 @@ app.use(express.static('.'));
 
 // Configuração do Multer para upload de arquivos
 const storage = multer.memoryStorage();
-const upload = multer({ 
+const upload = multer({
     storage,
     limits: { fileSize: 10 * 1024 * 1024 }, // 10MB max
     fileFilter: (req, file, cb) => {
@@ -187,15 +187,18 @@ app.post('/api/cadastro', (req, res, next) => {
         }
 
         // Enviar email via Resend
-        const emailResult = await resend.emails.send({
-            from: process.env.EMAIL_FROM,
-            to: process.env.EMAIL_TO,
-            subject: `🌴 Novo Cadastro Paraty GO! - ${formData.nomeEmpresa}`,
-            html: formatEmailHTML(formData),
-            attachments: attachments.length > 0 ? attachments : undefined,
-        });
-
-        console.log('✅ Email enviado via Resend:', emailResult);
+        if (process.env.EMAIL_FROM && process.env.EMAIL_TO) {
+            const emailResult = await resend.emails.send({
+                from: process.env.EMAIL_FROM,
+                to: process.env.EMAIL_TO,
+                subject: `🌴 Novo Cadastro Paraty GO! - ${formData.nomeEmpresa}`,
+                html: formatEmailHTML(formData),
+                attachments: attachments.length > 0 ? attachments : undefined,
+            });
+            console.log('✅ Email enviado via Resend:', emailResult);
+        } else {
+            console.warn('⚠️ EMAIL_FROM ou EMAIL_TO não configurados, email não enviado');
+        }
 
         res.status(200).json({
             success: true,

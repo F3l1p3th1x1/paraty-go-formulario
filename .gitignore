@@ -2,6 +2,7 @@
 .env
 .env.local
 .env.production
+.env.example
 
 # Dependencies
 node_modules/
@@ -28,3 +29,4 @@ screenshots/
 *.json.key
 firebase-adminsdk*.json
 serviceAccountKey*.json
+.env.example

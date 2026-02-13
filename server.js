@@ -9,14 +9,16 @@ const { Resend } = require('resend');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Inicializar Firebase Admin
-admin.initializeApp({
-    credential: admin.credential.cert({
-        projectId: process.env.FIREBASE_PROJECT_ID,
-        privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-        clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-    }),
-});
+// Inicializar Firebase Admin (singleton para evitar erro no Vercel)
+if (!admin.apps.length) {
+    admin.initializeApp({
+        credential: admin.credential.cert({
+            projectId: process.env.FIREBASE_PROJECT_ID,
+            privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+            clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+        }),
+    });
+}
 
 const db = admin.firestore();
 

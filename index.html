@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Paraty GO! - O marketplace de experiências turísticas de Paraty. Cadastre seu serviço e faça parte do futuro do turismo.">
+    <meta name="description"
+        content="Paraty GO! - O marketplace de experiências turísticas de Paraty. Cadastre seu serviço e faça parte do futuro do turismo.">
     <meta name="theme-color" content="#0c1929">
     <meta name="robots" content="index, follow">
     <title>Paraty GO! | O Futuro do Turismo em Paraty</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -113,10 +117,23 @@
         }
 
         @keyframes blobFloat {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(40px, -30px) scale(1.05); }
-            50% { transform: translate(-20px, 40px) scale(0.97); }
-            75% { transform: translate(30px, 20px) scale(1.03); }
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            25% {
+                transform: translate(40px, -30px) scale(1.05);
+            }
+
+            50% {
+                transform: translate(-20px, 40px) scale(0.97);
+            }
+
+            75% {
+                transform: translate(30px, 20px) scale(1.03);
+            }
         }
 
         /* ===== LOADING SCREEN ===== */
@@ -154,8 +171,17 @@
         }
 
         @keyframes pulse-logo {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.03); opacity: 0.85; }
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.03);
+                opacity: 0.85;
+            }
         }
 
         .loading-spinner {
@@ -187,8 +213,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .loading-screen .loading-dots {
@@ -205,13 +236,31 @@
             animation: bounce-dot 1.4s ease-in-out infinite;
         }
 
-        .loading-screen .loading-dots span:nth-child(1) { animation-delay: 0s; }
-        .loading-screen .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
-        .loading-screen .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+        .loading-screen .loading-dots span:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .loading-screen .loading-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .loading-screen .loading-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
 
         @keyframes bounce-dot {
-            0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-            40% { transform: scale(1); opacity: 1; }
+
+            0%,
+            80%,
+            100% {
+                transform: scale(0.6);
+                opacity: 0.4;
+            }
+
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .loading-screen .loading-text {
@@ -233,7 +282,9 @@
             opacity: 1;
         }
 
-        .top-fade { display: none; }
+        .top-fade {
+            display: none;
+        }
 
         /* ===== CONTAINER PRINCIPAL ===== */
         .container {
@@ -267,46 +318,72 @@
             transform: translate(-50%, -50%);
             width: 700px;
             height: 700px;
-            background: radial-gradient(circle, 
-                rgba(14, 165, 233, 0.06) 0%, 
-                rgba(6, 182, 212, 0.04) 30%,
-                transparent 70%);
+            background: radial-gradient(circle,
+                    rgba(14, 165, 233, 0.06) 0%,
+                    rgba(6, 182, 212, 0.04) 30%,
+                    transparent 70%);
             pointer-events: none;
             animation: hero-pulse 6s ease-in-out infinite;
         }
 
         @keyframes hero-pulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
-            50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.15);
+                opacity: 1;
+            }
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes shimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
+            0% {
+                background-position: -200% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
         }
 
         @keyframes float-text {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
         }
 
         .logo {
             font-family: 'Playfair Display', serif;
             font-size: clamp(3.5rem, 10vw, 6rem);
             font-weight: 700;
-            background: linear-gradient(
-                135deg,
-                var(--acento-claro) 0%,
-                var(--branco) 30%,
-                var(--acento-claro) 50%,
-                var(--branco) 70%,
-                var(--acento-claro) 100%
-            );
+            background: linear-gradient(135deg,
+                    var(--acento-claro) 0%,
+                    var(--branco) 30%,
+                    var(--acento-claro) 50%,
+                    var(--branco) 70%,
+                    var(--acento-claro) 100%);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -380,8 +457,13 @@
             transform: translateY(-2.5px);
         }
 
-        .divider::before { left: -16px; }
-        .divider::after { right: -16px; }
+        .divider::before {
+            left: -16px;
+        }
+
+        .divider::after {
+            right: -16px;
+        }
 
         /* Scroll indicator */
         .scroll-indicator {
@@ -451,10 +533,10 @@
         }
 
         .text-block {
-            background: linear-gradient(160deg, 
-                rgba(10, 30, 51, 0.85) 0%, 
-                rgba(13, 48, 80, 0.5) 50%, 
-                rgba(10, 30, 51, 0.85) 100%);
+            background: linear-gradient(160deg,
+                    rgba(10, 30, 51, 0.85) 0%,
+                    rgba(13, 48, 80, 0.5) 50%,
+                    rgba(10, 30, 51, 0.85) 100%);
             backdrop-filter: blur(40px);
             -webkit-backdrop-filter: blur(40px);
             border: 1px solid rgba(14, 165, 233, 0.12);
@@ -463,7 +545,7 @@
             margin-bottom: 32px;
             position: relative;
             overflow: hidden;
-            box-shadow: 
+            box-shadow:
                 0 8px 32px rgba(0, 0, 0, 0.3),
                 inset 0 1px 0 rgba(255, 255, 255, 0.04);
             width: 100%;
@@ -515,9 +597,9 @@
         }
 
         .benefit-card {
-            background: linear-gradient(160deg, 
-                rgba(10, 30, 51, 0.9) 0%, 
-                rgba(13, 48, 80, 0.5) 100%);
+            background: linear-gradient(160deg,
+                    rgba(10, 30, 51, 0.9) 0%,
+                    rgba(13, 48, 80, 0.5) 100%);
             border: 1px solid rgba(14, 165, 233, 0.1);
             border-radius: 20px;
             padding: 40px 36px;
@@ -554,7 +636,7 @@
         .benefit-card:hover {
             transform: translateY(-8px);
             border-color: rgba(14, 165, 233, 0.25);
-            box-shadow: 
+            box-shadow:
                 0 20px 48px rgba(0, 0, 0, 0.25),
                 0 0 0 1px rgba(14, 165, 233, 0.1);
         }
@@ -603,9 +685,9 @@
             text-align: center;
             margin: 64px 0;
             padding: 52px 44px;
-            background: linear-gradient(160deg, 
-                rgba(10, 30, 51, 0.85) 0%, 
-                rgba(13, 48, 80, 0.45) 100%);
+            background: linear-gradient(160deg,
+                    rgba(10, 30, 51, 0.85) 0%,
+                    rgba(13, 48, 80, 0.45) 100%);
             border-radius: 24px;
             border: 1px solid rgba(14, 165, 233, 0.12);
             position: relative;
@@ -644,15 +726,15 @@
         .partnership-container {
             text-align: center;
             padding: 64px 52px;
-            background: linear-gradient(160deg, 
-                rgba(5, 10, 16, 0.95) 0%, 
-                rgba(10, 30, 51, 0.9) 50%,
-                rgba(5, 10, 16, 0.95) 100%);
+            background: linear-gradient(160deg,
+                    rgba(5, 10, 16, 0.95) 0%,
+                    rgba(10, 30, 51, 0.9) 50%,
+                    rgba(5, 10, 16, 0.95) 100%);
             border-radius: 24px;
             border: 1px solid rgba(14, 165, 233, 0.15);
             position: relative;
             overflow: hidden;
-            box-shadow: 
+            box-shadow:
                 0 24px 64px rgba(0, 0, 0, 0.4),
                 inset 0 1px 0 rgba(255, 255, 255, 0.03);
             width: 100%;
@@ -667,12 +749,12 @@
             left: 0;
             right: 0;
             height: 2px;
-            background: linear-gradient(90deg, 
-                transparent,
-                var(--acento) 30%,
-                var(--acento-claro) 50%,
-                var(--acento) 70%,
-                transparent);
+            background: linear-gradient(90deg,
+                    transparent,
+                    var(--acento) 30%,
+                    var(--acento-claro) 50%,
+                    var(--acento) 70%,
+                    transparent);
         }
 
         .partnership-container::after {
@@ -682,10 +764,10 @@
             left: 0;
             right: 0;
             height: 1px;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(14, 165, 233, 0.2), 
-                transparent);
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(14, 165, 233, 0.2),
+                    transparent);
         }
 
         .partnership-icon {
@@ -698,8 +780,17 @@
         }
 
         @keyframes pulse-glow {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.08); opacity: 0.85; }
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.08);
+                opacity: 0.85;
+            }
         }
 
         .partnership-content {
@@ -721,9 +812,9 @@
             position: relative;
             padding: 32px 36px;
             margin: 36px 0;
-            background: linear-gradient(135deg, 
-                rgba(14, 165, 233, 0.06) 0%, 
-                rgba(6, 182, 212, 0.04) 100%);
+            background: linear-gradient(135deg,
+                    rgba(14, 165, 233, 0.06) 0%,
+                    rgba(6, 182, 212, 0.04) 100%);
             border-radius: 16px;
             border-left: 3px solid var(--acento);
         }
@@ -757,10 +848,10 @@
             flex: 1;
             max-width: 60px;
             height: 1px;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(14, 165, 233, 0.4),
-                transparent);
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(14, 165, 233, 0.4),
+                    transparent);
             border-radius: 1px;
         }
 
@@ -777,9 +868,9 @@
 
         /* ===== FORMULÁRIO ===== */
         .form-section {
-            background: linear-gradient(180deg, 
-                rgba(10, 30, 51, 0.9) 0%, 
-                rgba(6, 16, 26, 0.95) 100%);
+            background: linear-gradient(180deg,
+                    rgba(10, 30, 51, 0.9) 0%,
+                    rgba(6, 16, 26, 0.95) 100%);
             backdrop-filter: blur(40px);
             -webkit-backdrop-filter: blur(40px);
             border: 1px solid rgba(14, 165, 233, 0.12);
@@ -788,7 +879,7 @@
             margin-top: 64px;
             width: 100%;
             max-width: 100%;
-            box-shadow: 
+            box-shadow:
                 0 40px 80px rgba(0, 0, 0, 0.4),
                 0 0 0 1px rgba(14, 165, 233, 0.05);
             position: relative;
@@ -892,7 +983,7 @@
         .form-group select:focus,
         .form-group textarea:focus {
             border-color: var(--acento);
-            box-shadow: 
+            box-shadow:
                 0 0 0 3px rgba(14, 165, 233, 0.08),
                 0 8px 24px rgba(0, 0, 0, 0.2);
             background: rgba(10, 30, 51, 0.9);
@@ -1180,7 +1271,7 @@
             font-weight: 700;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 
+            box-shadow:
                 0 8px 32px rgba(14, 165, 233, 0.3),
                 0 2px 8px rgba(0, 0, 0, 0.2);
             position: relative;
@@ -1201,14 +1292,14 @@
 
         .submit-btn:hover {
             transform: translateY(-4px) scale(1.02);
-            box-shadow: 
+            box-shadow:
                 0 16px 48px rgba(14, 165, 233, 0.4),
                 0 4px 16px rgba(0, 0, 0, 0.25);
         }
 
         .submit-btn:focus {
             outline: none;
-            box-shadow: 
+            box-shadow:
                 0 0 0 3px rgba(14, 165, 233, 0.3),
                 0 8px 32px rgba(14, 165, 233, 0.3);
         }
@@ -1278,13 +1369,25 @@
         }
 
         @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         /* Footer */
@@ -1470,7 +1573,9 @@
                 font-size: 1.6rem;
             }
 
-            .glow-orb-1, .glow-orb-2, .glow-orb-3 {
+            .glow-orb-1,
+            .glow-orb-2,
+            .glow-orb-3 {
                 opacity: 0.25;
             }
         }
@@ -1500,7 +1605,8 @@
             .form-group select,
             .form-group textarea {
                 padding: 16px 14px;
-                font-size: 16px; /* Previne zoom automático no iOS */
+                font-size: 16px;
+                /* Previne zoom automático no iOS */
             }
 
             .checkbox-group {
@@ -1679,6 +1785,7 @@
 
         /* Touch targets - garantir áreas clicáveis de 44px mínimo */
         @media (max-width: 768px) {
+
             .submit-btn,
             .social-link,
             button,
@@ -1711,7 +1818,7 @@
         }
 
         .submit-btn.loading .btn-text,
-        .submit-btn.loading > svg {
+        .submit-btn.loading>svg {
             display: none;
         }
 
@@ -1784,7 +1891,9 @@
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .transition-text {
@@ -1794,16 +1903,28 @@
             letter-spacing: 0.5px;
         }
 
-        .submit-btn .loading-content .loading-dots span:nth-child(1) { animation-delay: 0s; }
-        .submit-btn .loading-content .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
-        .submit-btn .loading-content .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+        .submit-btn .loading-content .loading-dots span:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .submit-btn .loading-content .loading-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .submit-btn .loading-content .loading-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
 
         @keyframes dotPulse {
-            0%, 80%, 100% { 
+
+            0%,
+            80%,
+            100% {
                 opacity: 0.3;
                 transform: scale(0.8);
             }
-            40% { 
+
+            40% {
                 opacity: 1;
                 transform: scale(1);
             }
@@ -1847,6 +1968,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
@@ -1901,241 +2023,272 @@
                 </div>
             </section>
 
-        <!-- Introdução -->
-        <section class="content-section">
-            <div class="text-block">
-                <p class="intro-text highlight" style="text-align: center; font-size: 1.8rem; margin-bottom: 28px; font-family: 'Poppins', sans-serif; font-weight: 600; letter-spacing: -0.5px; color: var(--acento-claro);">
-                    É uma honra enorme receber você aqui.
-                </p>
-                <p>
-                    Ao chegar nesta página, você dá o primeiro passo para fazer parte de um <span class="emphasis">ecossistema que está transformando</span> a maneira como turistas descobrem, reservam e vivem as experiências de Paraty.
-                </p>
-                <p>
-                    O <span class="emphasis">Paraty GO!</span> nasceu com um propósito claro: <strong>conectar pessoas às melhores vivências da nossa cidade</strong> com inteligência, organização e tecnologia.
-                </p>
-                <p>
-                    Para isso, buscamos parceiros que compartilham dos mesmos valores de <span class="emphasis">cuidado, qualidade e compromisso</span> com o visitante.
-                </p>
-            </div>
-        </section>
-
-        <!-- Por que avaliação? -->
-        <section class="content-section">
-            <h2 class="section-title">Por que realizamos uma <span>avaliação prévia</span>?</h2>
-            <div class="text-block">
-                <p>
-                    Para manter nossa plataforma <span class="emphasis">transparente, confiável e alinhada às expectativas dos turistas</span>, é essencial garantir que cada serviço listado entregue segurança, qualidade e boa experiência.
-                </p>
-                <p>
-                    Essa avaliação não existe para dificultar sua entrada, e sim para garantir que:
-                </p>
-                <p style="text-align: center; padding-left: 0;">
-                    ✓ O visitante tenha uma <span class="emphasis">experiência excelente</span><br>
-                    ✓ O prestador seja <span class="emphasis">corretamente representado</span><br>
-                    ✓ O turismo local evolua com <span class="emphasis">padrão e responsabilidade</span>
-                </p>
-                <p style="text-align: center; font-size: 1.15rem; font-weight: 500; color: var(--ciano-agua); margin-top: 24px;">
-                    Nosso objetivo é valorizar quem trabalha direito e criar um ambiente onde todos crescem juntos.
-                </p>
-            </div>
-        </section>
-
-        <!-- Benefícios -->
-        <section class="content-section">
-            <h2 class="section-title">Paraty GO! Aqui o seu negócio <span>ganha</span>!</h2>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">👁️</div>
-                    <h3>Mais Visibilidade</h3>
-                    <p>Apareça nas recomendações inteligentes e seja encontrado por turistas que procuram exatamente o que você oferece.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">📅</div>
-                    <h3>Mais Reservas</h3>
-                    <p>Uma plataforma integrada com IA que organiza, simplifica escolhas e aproxima visitantes dos serviços que melhor atendem às suas expectativas.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">⭐</div>
-                    <h3>Mais Credibilidade</h3>
-                    <p>Faça parte de uma plataforma que prioriza qualidade e seriedade no turismo local.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">🤝</div>
-                    <h3>Mais Conexão</h3>
-                    <p>Receba visitantes qualificados, alinhados ao tipo de experiência que você oferece.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Mensagem de parceria -->
-        <section class="content-section partnership-section">
-            <div class="partnership-container">
-                
-                <div class="partnership-content">
-                    <p class="partnership-intro">
-                        Aqui, você não é apenas mais um prestador.
+            <!-- Introdução -->
+            <section class="content-section">
+                <div class="text-block">
+                    <p class="intro-text highlight"
+                        style="text-align: center; font-size: 1.8rem; margin-bottom: 28px; font-family: 'Poppins', sans-serif; font-weight: 600; letter-spacing: -0.5px; color: var(--acento-claro);">
+                        É uma honra enorme receber você aqui.
                     </p>
-                    
-                    <div class="partnership-highlight">
-                        <span class="highlight-bar"></span>
-                        <p>É um <span class="text-gradient">parceiro</span> que representa a essência do turismo que queremos promover em <span class="text-gradient">Paraty</span></p>
+                    <p>
+                        Ao chegar nesta página, você dá o primeiro passo para fazer parte de um <span
+                            class="emphasis">ecossistema que está transformando</span> a maneira como turistas
+                        descobrem, reservam e vivem as experiências de Paraty.
+                    </p>
+                    <p>
+                        O <span class="emphasis">Paraty GO!</span> nasceu com um propósito claro: <strong>conectar
+                            pessoas às melhores vivências da nossa cidade</strong> com inteligência, organização e
+                        tecnologia.
+                    </p>
+                    <p>
+                        Para isso, buscamos parceiros que compartilham dos mesmos valores de <span
+                            class="emphasis">cuidado, qualidade e compromisso</span> com o visitante.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Por que avaliação? -->
+            <section class="content-section">
+                <h2 class="section-title">Por que realizamos uma <span>avaliação prévia</span>?</h2>
+                <div class="text-block">
+                    <p>
+                        Para manter nossa plataforma <span class="emphasis">transparente, confiável e alinhada às
+                            expectativas dos turistas</span>, é essencial garantir que cada serviço listado entregue
+                        segurança, qualidade e boa experiência.
+                    </p>
+                    <p>
+                        Essa avaliação não existe para dificultar sua entrada, e sim para garantir que:
+                    </p>
+                    <p style="text-align: center; padding-left: 0;">
+                        ✓ O visitante tenha uma <span class="emphasis">experiência excelente</span><br>
+                        ✓ O prestador seja <span class="emphasis">corretamente representado</span><br>
+                        ✓ O turismo local evolua com <span class="emphasis">padrão e responsabilidade</span>
+                    </p>
+                    <p
+                        style="text-align: center; font-size: 1.15rem; font-weight: 500; color: var(--ciano-agua); margin-top: 24px;">
+                        Nosso objetivo é valorizar quem trabalha direito e criar um ambiente onde todos crescem juntos.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Benefícios -->
+            <section class="content-section">
+                <h2 class="section-title">Paraty GO! Aqui o seu negócio <span>ganha</span>!</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">👁️</div>
+                        <h3>Mais Visibilidade</h3>
+                        <p>Apareça nas recomendações inteligentes e seja encontrado por turistas que procuram exatamente
+                            o que você oferece.</p>
                     </div>
-                    
-                    <div class="partnership-footer">
-                        <div class="decorative-line"></div>
-                        <p class="partnership-closing">
-                            ✨ Estamos felizes em caminhar com você ✨
+                    <div class="benefit-card">
+                        <div class="benefit-icon">📅</div>
+                        <h3>Mais Reservas</h3>
+                        <p>Uma plataforma integrada com IA que organiza, simplifica escolhas e aproxima visitantes dos
+                            serviços que melhor atendem às suas expectativas.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">⭐</div>
+                        <h3>Mais Credibilidade</h3>
+                        <p>Faça parte de uma plataforma que prioriza qualidade e seriedade no turismo local.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🤝</div>
+                        <h3>Mais Conexão</h3>
+                        <p>Receba visitantes qualificados, alinhados ao tipo de experiência que você oferece.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mensagem de parceria -->
+            <section class="content-section partnership-section">
+                <div class="partnership-container">
+
+                    <div class="partnership-content">
+                        <p class="partnership-intro">
+                            Aqui, você não é apenas mais um prestador.
                         </p>
-                        <div class="decorative-line"></div>
+
+                        <div class="partnership-highlight">
+                            <span class="highlight-bar"></span>
+                            <p>É um <span class="text-gradient">parceiro</span> que representa a essência do turismo que
+                                queremos promover em <span class="text-gradient">Paraty</span></p>
+                        </div>
+
+                        <div class="partnership-footer">
+                            <div class="decorative-line"></div>
+                            <p class="partnership-closing">
+                                ✨ Estamos felizes em caminhar com você ✨
+                            </p>
+                            <div class="decorative-line"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Formulário -->
-        <section class="form-section" id="formulario">
-            <h2 class="form-title">Cadastre seu Serviço</h2>
-            <p class="form-subtitle">Preencha os dados abaixo com tranquilidade. Nossa equipe analisará seu serviço e entrará em contato em até 48 horas.</p>
+            <!-- Formulário -->
+            <section class="form-section" id="formulario">
+                <h2 class="form-title">Cadastre seu Serviço</h2>
+                <p class="form-subtitle">Preencha os dados abaixo com tranquilidade. Nossa equipe analisará seu serviço
+                    e entrará em contato em até 48 horas.</p>
 
-            <form id="prestadorForm">
-                <div class="form-grid">
-                    <!-- 1. Nome da empresa -->
-                    <div class="form-group">
-                        <label for="nomeEmpresa">Nome da Empresa <span class="required">*</span></label>
-                        <input type="text" id="nomeEmpresa" name="nomeEmpresa" placeholder="Ex: Lancha Paradise Paraty" required maxlength="100">
-                        <span class="char-counter" data-for="nomeEmpresa">0/100</span>
-                    </div>
+                <form id="prestadorForm">
+                    <div class="form-grid">
+                        <!-- 1. Nome da empresa -->
+                        <div class="form-group">
+                            <label for="nomeEmpresa">Nome da Empresa <span class="required">*</span></label>
+                            <input type="text" id="nomeEmpresa" name="nomeEmpresa"
+                                placeholder="Ex: Lancha Paradise Paraty" required maxlength="100">
+                            <span class="char-counter" data-for="nomeEmpresa">0/100</span>
+                        </div>
 
-                    <!-- 2. Categoria do serviço -->
-                    <div class="form-group">
-                        <label for="categoria">Categoria do Serviço <span class="required">*</span></label>
-                        <select id="categoria" name="categoria" required>
-                            <option value="">Selecione uma categoria</option>
-                            <option value="passeio-lancha">Passeio de Lancha</option>
-                            <option value="passeio-escuna">Passeio de Escuna</option>
-                            <option value="passeio-barco">Passeio de Barco</option>
-                            <option value="passeio-kayak">Passeio de Kayak / Stand Up</option>
-                            <option value="passeio-jeep">Passeio de Jeep 4x4</option>
-                            <option value="transfer">Transfer</option>
-                            <option value="pousada">Pousada / Hospedagem</option>
-                            <option value="restaurante">Restaurante / Gastronomia</option>
-                            <option value="guia-turismo">Guia de Turismo</option>
-                            <option value="mergulho">Mergulho</option>
-                            <option value="trilha">Trilhas / Ecoturismo</option>
-                            <option value="fotografia">Fotografia / Vídeo</option>
-                            <option value="aluguel-equipamentos">Aluguel de Equipamentos</option>
-                            <option value="outro">Outro</option>
-                        </select>
-                    </div>
+                        <!-- 2. Categoria do serviço -->
+                        <div class="form-group">
+                            <label for="categoria">Categoria do Serviço <span class="required">*</span></label>
+                            <select id="categoria" name="categoria" required>
+                                <option value="">Selecione uma categoria</option>
+                                <option value="passeio-lancha">Passeio de Lancha</option>
+                                <option value="passeio-escuna">Passeio de Escuna</option>
+                                <option value="passeio-barco">Passeio de Barco</option>
+                                <option value="passeio-kayak">Passeio de Kayak / Stand Up</option>
+                                <option value="passeio-jeep">Passeio de Jeep 4x4</option>
+                                <option value="transfer">Transfer</option>
+                                <option value="pousada">Pousada / Hospedagem</option>
+                                <option value="restaurante">Restaurante / Gastronomia</option>
+                                <option value="guia-turismo">Guia de Turismo</option>
+                                <option value="mergulho">Mergulho</option>
+                                <option value="trilha">Trilhas / Ecoturismo</option>
+                                <option value="fotografia">Fotografia / Vídeo</option>
+                                <option value="aluguel-equipamentos">Aluguel de Equipamentos</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
 
-                    <!-- 3. Descrição curta -->
-                    <div class="form-group full-width">
-                        <label for="descricao">Descrição Curta do Serviço <span class="required">*</span></label>
-                        <textarea id="descricao" name="descricao" placeholder="Descreva brevemente o que você oferece, os diferenciais e principais atrativos..." required maxlength="1000"></textarea>
-                        <span class="char-counter" data-for="descricao">0/1000</span>
-                    </div>
+                        <!-- 3. Descrição curta -->
+                        <div class="form-group full-width">
+                            <label for="descricao">Descrição Curta do Serviço <span class="required">*</span></label>
+                            <textarea id="descricao" name="descricao"
+                                placeholder="Descreva brevemente o que você oferece, os diferenciais e principais atrativos..."
+                                required maxlength="1000"></textarea>
+                            <span class="char-counter" data-for="descricao">0/1000</span>
+                        </div>
 
-                    <!-- 4. Nome do responsável -->
-                    <div class="form-group">
-                        <label for="nomeResponsavel">Nome do Responsável <span class="required">*</span></label>
-                        <input type="text" id="nomeResponsavel" name="nomeResponsavel" placeholder="Seu nome completo" required maxlength="100">
-                        <span class="char-counter" data-for="nomeResponsavel">0/100</span>
-                    </div>
+                        <!-- 4. Nome do responsável -->
+                        <div class="form-group">
+                            <label for="nomeResponsavel">Nome do Responsável <span class="required">*</span></label>
+                            <input type="text" id="nomeResponsavel" name="nomeResponsavel"
+                                placeholder="Seu nome completo" required maxlength="100">
+                            <span class="char-counter" data-for="nomeResponsavel">0/100</span>
+                        </div>
 
-                    <!-- 5. WhatsApp -->
-                    <div class="form-group">
-                        <label for="whatsapp">WhatsApp de Contato <span class="required">*</span></label>
-                        <input type="tel" id="whatsapp" name="whatsapp" placeholder="(24) 99999-9999" required>
-                    </div>
+                        <!-- 5. WhatsApp -->
+                        <div class="form-group">
+                            <label for="whatsapp">WhatsApp de Contato <span class="required">*</span></label>
+                            <input type="tel" id="whatsapp" name="whatsapp" placeholder="(24) 99999-9999" required>
+                        </div>
 
-                    <!-- 6. E-mail comercial -->
-                    <div class="form-group">
-                        <label for="email">E-mail Comercial <span class="required">*</span></label>
-                        <input type="email" id="email" name="email" placeholder="contato@suaempresa.com.br" required>
-                    </div>
+                        <!-- 6. E-mail comercial -->
+                        <div class="form-group">
+                            <label for="email">E-mail Comercial <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" placeholder="contato@suaempresa.com.br"
+                                required>
+                        </div>
 
-                    <!-- 7. Endereço -->
-                    <div class="form-group">
-                        <label for="endereco">Endereço / Local de Saída <span class="required">*</span></label>
-                        <input type="text" id="endereco" name="endereco" placeholder="Ex: Cais de Paraty, Pier do Centro" required maxlength="200">
-                        <span class="char-counter" data-for="endereco">0/200</span>
-                    </div>
+                        <!-- 7. Endereço -->
+                        <div class="form-group">
+                            <label for="endereco">Endereço / Local de Saída <span class="required">*</span></label>
+                            <input type="text" id="endereco" name="endereco"
+                                placeholder="Ex: Cais de Paraty, Pier do Centro" required maxlength="200">
+                            <span class="char-counter" data-for="endereco">0/200</span>
+                        </div>
 
-                    <!-- 8. Capacidade / Tipo de serviço -->
-                    <div class="form-group full-width">
-                        <label for="capacidade">Capacidade / Tipo de Serviço <span class="required">*</span></label>
-                        <input type="text" id="capacidade" name="capacidade" placeholder="Ex: Lancha para até 12 pessoas / 4 quartos com ar-condicionado / Jeep para 6 passageiros" required maxlength="300">
-                        <span class="char-counter" data-for="capacidade">0/300</span>
-                    </div>
+                        <!-- 8. Capacidade / Tipo de serviço -->
+                        <div class="form-group full-width">
+                            <label for="capacidade">Capacidade / Tipo de Serviço <span class="required">*</span></label>
+                            <input type="text" id="capacidade" name="capacidade"
+                                placeholder="Ex: Lancha para até 12 pessoas / 4 quartos com ar-condicionado / Jeep para 6 passageiros"
+                                required maxlength="300">
+                            <span class="char-counter" data-for="capacidade">0/300</span>
+                        </div>
 
-                    <!-- 9. Instagram / Site -->
-                    <div class="form-group full-width">
-                        <label for="redesSociais">Instagram / Site (opcional)</label>
-                        <input type="text" id="redesSociais" name="redesSociais" placeholder="@seuinstagram ou www.seusite.com.br" maxlength="200">
-                        <span class="char-counter" data-for="redesSociais">0/200</span>
-                    </div>
+                        <!-- 9. Instagram / Site -->
+                        <div class="form-group full-width">
+                            <label for="redesSociais">Instagram / Site (opcional)</label>
+                            <input type="text" id="redesSociais" name="redesSociais"
+                                placeholder="@seuinstagram ou www.seusite.com.br" maxlength="200">
+                            <span class="char-counter" data-for="redesSociais">0/200</span>
+                        </div>
 
-                    <!-- 10. O que torna especial -->
-                    <div class="form-group full-width">
-                        <label for="diferencial">O que torna seu serviço especial? <span class="required">*</span></label>
-                        <textarea id="diferencial" name="diferencial" placeholder="Conte o que faz seu serviço ser único. O cuidado, a história, a experiência... Queremos conhecer você!" required maxlength="1500"></textarea>
-                        <span class="char-counter" data-for="diferencial">0/1500</span>
-                    </div>
+                        <!-- 10. O que torna especial -->
+                        <div class="form-group full-width">
+                            <label for="diferencial">O que torna seu serviço especial? <span
+                                    class="required">*</span></label>
+                            <textarea id="diferencial" name="diferencial"
+                                placeholder="Conte o que faz seu serviço ser único. O cuidado, a história, a experiência... Queremos conhecer você!"
+                                required maxlength="1500"></textarea>
+                            <span class="char-counter" data-for="diferencial">0/1500</span>
+                        </div>
 
-                    <!-- 11. Upload de foto do empreendimento -->
-                    <div class="form-group full-width">
-                        <label>Foto do Empreendimento (opcional)</label>
-                        <div class="file-upload">
-                            <div class="file-upload-area">
-                                <input type="file" id="documentos" name="documentos" accept=".jpg,.jpeg,.png,.webp,.gif,.pdf">
-                                <div class="upload-icon">📷</div>
-                                <p class="upload-text">Clique ou arraste um arquivo aqui</p>
-                                <p class="upload-hint">Envie uma foto do seu empreendimento ou serviço para referência visual</p>
-                                <p class="upload-limit">⚠️ Limite: 1 único arquivo de até 10MB (JPG, PNG, WEBP, GIF ou PDF)</p>
+                        <!-- 11. Upload de foto do empreendimento -->
+                        <div class="form-group full-width">
+                            <label>Foto do Empreendimento (opcional)</label>
+                            <div class="file-upload">
+                                <div class="file-upload-area">
+                                    <input type="file" id="documentos" name="documentos"
+                                        accept=".jpg,.jpeg,.png,.webp,.gif,.pdf">
+                                    <div class="upload-icon">📷</div>
+                                    <p class="upload-text">Clique ou arraste um arquivo aqui</p>
+                                    <p class="upload-hint">Envie uma foto do seu empreendimento ou serviço para
+                                        referência visual</p>
+                                    <p class="upload-limit">⚠️ Limite: 1 único arquivo de até 10MB (JPG, PNG, WEBP, GIF
+                                        ou PDF)</p>
+                                </div>
+                                <div class="file-list" id="fileList"></div>
                             </div>
-                            <div class="file-list" id="fileList"></div>
+                        </div>
+
+                        <!-- 12. Checkbox de termos -->
+                        <div class="form-group full-width">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="termos" name="termos" required>
+                                <label for="termos">
+                                    Aceito os termos de parceria do Paraty GO! e autorizo o uso das informações
+                                    fornecidas para análise e eventual contato comercial. <span
+                                        class="required">*</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- 12. Checkbox de termos -->
-                    <div class="form-group full-width">
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="termos" name="termos" required>
-                            <label for="termos">
-                                Aceito os termos de parceria do Paraty GO! e autorizo o uso das informações fornecidas para análise e eventual contato comercial. <span class="required">*</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Botão de envio -->
-                <div class="submit-container">
-                    <button type="submit" class="submit-btn" aria-label="Enviar formulário de cadastro">
-                        <span class="btn-text">Enviar Cadastro</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                        <span class="loading-content">
-                            <span class="loading-text">Enviando</span>
-                            <span class="loading-dots">
-                                <span></span>
-                                <span></span>
-                                <span></span>
+                    <!-- Botão de envio -->
+                    <div class="submit-container">
+                        <button type="submit" class="submit-btn" aria-label="Enviar formulário de cadastro">
+                            <span class="btn-text">Enviar Cadastro</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                            <span class="loading-content">
+                                <span class="loading-text">Enviando</span>
+                                <span class="loading-dots">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </span>
                             </span>
-                        </span>
-                    </button>
-                </div>
-            </form>
+                        </button>
+                    </div>
+                </form>
 
-            <!-- Mensagem de sucesso removida - redirecionamento para confirmacao.html -->
-        </section>
+                <!-- Mensagem de sucesso removida - redirecionamento para confirmacao.html -->
+            </section>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <p>© 2025 Paraty GO! — Todos os direitos reservados</p>
-        </footer>
-    </div>
+            <!-- Footer -->
+            <footer class="footer">
+                <p>© 2025 Paraty GO! — Todos os direitos reservados</p>
+            </footer>
+        </div>
     </div>
 
     <script>
@@ -2155,14 +2308,14 @@
         const retryBtn = document.getElementById('retryBtn');
 
         // ===== LOADING SCREEN CONTROL =====
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             const loadingScreen = document.getElementById('loadingScreen');
             const pageContent = document.getElementById('pageContent');
-            
-            setTimeout(function() {
+
+            setTimeout(function () {
                 loadingScreen.classList.add('hidden');
                 pageContent.classList.add('loaded');
-                
+
                 // Restaurar rascunho salvo
                 restoreFormDraft();
             }, 800);
@@ -2176,10 +2329,10 @@
                 const field = document.getElementById(fieldId);
                 if (field) {
                     const maxLength = field.maxLength;
-                    
+
                     // Atualizar contador inicial
                     updateCounter(field, counter, maxLength);
-                    
+
                     // Listener para atualização em tempo real
                     field.addEventListener('input', () => {
                         updateCounter(field, counter, maxLength);
@@ -2191,10 +2344,10 @@
         function updateCounter(field, counter, maxLength) {
             const currentLength = field.value.length;
             counter.textContent = `${currentLength}/${maxLength}`;
-            
+
             const percentage = (currentLength / maxLength) * 100;
             counter.classList.remove('warning', 'danger');
-            
+
             if (percentage >= 95) {
                 counter.classList.add('danger');
             } else if (percentage >= 80) {
@@ -2206,7 +2359,7 @@
         function saveFormDraft() {
             const formData = {};
             const inputs = form.querySelectorAll('input, select, textarea');
-            
+
             inputs.forEach(input => {
                 if (input.type === 'file') return; // Não salvar arquivos
                 if (input.type === 'checkbox') {
@@ -2215,12 +2368,12 @@
                     formData[input.name] = input.value;
                 }
             });
-            
+
             // Só salvar se houve mudança
             const currentData = JSON.stringify(formData);
             if (currentData === lastFormData) return;
             lastFormData = currentData;
-            
+
             try {
                 localStorage.setItem(STORAGE_KEY, currentData);
                 showAutosaveIndicator('✓ Rascunho salvo', true);
@@ -2233,10 +2386,10 @@
             try {
                 const saved = localStorage.getItem(STORAGE_KEY);
                 if (!saved) return;
-                
+
                 const formData = JSON.parse(saved);
                 let hasData = false;
-                
+
                 Object.keys(formData).forEach(key => {
                     const input = form.querySelector(`[name="${key}"]`);
                     if (input && formData[key]) {
@@ -2248,7 +2401,7 @@
                         hasData = true;
                     }
                 });
-                
+
                 if (hasData) {
                     // Atualizar contadores
                     document.querySelectorAll('.char-counter').forEach(counter => {
@@ -2258,7 +2411,7 @@
                             updateCounter(field, counter, field.maxLength);
                         }
                     });
-                    
+
                     showAutosaveIndicator('📂 Rascunho restaurado', true);
                 }
             } catch (e) {
@@ -2278,7 +2431,7 @@
             autosaveText.textContent = text;
             autosaveIndicator.classList.toggle('saved', saved);
             autosaveIndicator.classList.add('show');
-            
+
             setTimeout(() => {
                 autosaveIndicator.classList.remove('show');
             }, 2000);
@@ -2302,10 +2455,10 @@
 
         // ===== MÁSCARA DE TELEFONE =====
         const whatsappInput = document.getElementById('whatsapp');
-        whatsappInput.addEventListener('input', function(e) {
+        whatsappInput.addEventListener('input', function (e) {
             let value = e.target.value.replace(/\D/g, '');
             if (value.length > 11) value = value.slice(0, 11);
-            
+
             if (value.length > 0) {
                 if (value.length <= 2) {
                     value = `(${value}`;
@@ -2321,7 +2474,7 @@
         // ===== PLACEHOLDER DINÂMICO =====
         const categoriaSelect = document.getElementById('categoria');
         const capacidadeInput = document.getElementById('capacidade');
-        
+
         const placeholders = {
             'passeio-lancha': 'Ex: Lancha para até 12 pessoas, com cooler e som',
             'passeio-escuna': 'Ex: Escuna para 40 pessoas, com bar e banheiro',
@@ -2339,7 +2492,7 @@
             'outro': 'Descreva a capacidade ou tipo do seu serviço'
         };
 
-        categoriaSelect.addEventListener('change', function() {
+        categoriaSelect.addEventListener('change', function () {
             const categoria = this.value;
             capacidadeInput.placeholder = placeholders[categoria] || 'Ex: Capacidade ou características do serviço';
         });
@@ -2348,12 +2501,12 @@
         const documentosInput = document.getElementById('documentos');
         const fileList = document.getElementById('fileList');
 
-        documentosInput.addEventListener('change', function() {
+        documentosInput.addEventListener('change', function () {
             const file = this.files[0];
             if (file) {
                 const maxSize = 10 * 1024 * 1024; // 10MB
                 const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'application/pdf'];
-                
+
                 // Verificar tipo do arquivo
                 if (!allowedTypes.includes(file.type)) {
                     showError(`Tipo de arquivo não permitido: ${file.name}. Use apenas JPG, PNG, WEBP, GIF ou PDF.`);
@@ -2361,7 +2514,7 @@
                     fileList.innerHTML = '';
                     return;
                 }
-                
+
                 // Verificar tamanho do arquivo
                 if (file.size > maxSize) {
                     const sizeMB = (file.size / 1024 / 1024).toFixed(2);
@@ -2370,7 +2523,7 @@
                     fileList.innerHTML = '';
                     return;
                 }
-                
+
                 const sizeMB = (file.size / 1024 / 1024).toFixed(2);
                 fileList.innerHTML = `✅ 📄 ${file.name} (${sizeMB}MB)`;
             } else {
@@ -2384,7 +2537,7 @@
         async function submitForm(retryCount = 0) {
             const maxRetries = 2;
             const submitBtn = form.querySelector('.submit-btn');
-            
+
             if (isSubmitting) return;
             isSubmitting = true;
             submitBtn.classList.add('loading');
@@ -2392,27 +2545,32 @@
 
             try {
                 const formData = new FormData(form);
-                
+
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 30000); // 30s timeout
-                
+
                 const response = await fetch('/api/cadastro', {
                     method: 'POST',
                     body: formData,
                     signal: controller.signal
                 });
-                
+
                 clearTimeout(timeoutId);
+
+                const contentType = response.headers.get('content-type') || '';
+                if (!contentType.includes('application/json')) {
+                    throw new Error('Erro no servidor. Tente novamente em alguns instantes.');
+                }
 
                 const result = await response.json();
 
                 if (result.success) {
                     // Limpar rascunho salvo
                     clearFormDraft();
-                    
+
                     // Mostrar overlay de transição
                     transitionOverlay.classList.add('show');
-                    
+
                     setTimeout(() => {
                         window.location.href = 'confirmacao.html';
                     }, 500);
@@ -2421,9 +2579,9 @@
                 }
             } catch (error) {
                 console.error('Erro:', error);
-                
+
                 let errorMsg = 'Não foi possível enviar o formulário.';
-                
+
                 if (error.name === 'AbortError') {
                     errorMsg = 'A conexão demorou muito. Verifique sua internet.';
                 } else if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
@@ -2431,7 +2589,7 @@
                 } else if (error.message) {
                     errorMsg = error.message;
                 }
-                
+
                 // Tentar novamente automaticamente
                 if (retryCount < maxRetries) {
                     showAutosaveIndicator(`🔄 Tentando novamente (${retryCount + 1}/${maxRetries})...`, false);
@@ -2439,7 +2597,7 @@
                     setTimeout(() => submitForm(retryCount + 1), 2000);
                     return;
                 }
-                
+
                 showError(`${errorMsg} Seu rascunho está salvo, não precisa preencher tudo de novo!`);
                 submitBtn.classList.remove('loading');
             } finally {
@@ -2447,13 +2605,13 @@
             }
         }
 
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', function (e) {
             e.preventDefault();
             submitForm();
         });
 
         // Botão de retry manual
-        retryBtn.addEventListener('click', function() {
+        retryBtn.addEventListener('click', function () {
             hideError();
             submitForm();
         });
@@ -2549,10 +2707,10 @@
         }
 
         // Aviso antes de sair da página com formulário preenchido
-        window.addEventListener('beforeunload', function(e) {
+        window.addEventListener('beforeunload', function (e) {
             const inputs = form.querySelectorAll('input:not([type="checkbox"]), textarea');
             const hasData = Array.from(inputs).some(input => input.value.trim() !== '');
-            
+
             if (hasData && !transitionOverlay.classList.contains('show')) {
                 e.preventDefault();
                 e.returnValue = 'Você tem dados não salvos. Deseja realmente sair?';
@@ -2561,4 +2719,5 @@
         });
     </script>
 </body>
+
 </html>

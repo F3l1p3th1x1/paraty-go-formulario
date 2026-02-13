@@ -1,0 +1,7 @@
+# Dev-only files (not needed in Vercel)
+server.js
+db-health.js
+monitor.js
+test-email.js
+test-responsive.js
+test-visual.js
